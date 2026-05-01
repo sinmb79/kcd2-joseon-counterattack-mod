@@ -1,0 +1,15 @@
+# Keep private gameplay captures out of source control.
+AGENTS.md
+assets/game-captures-private/*
+!assets/game-captures-private/README.md
+
+# Local exports can be regenerated or reviewed separately.
+exports/*
+!exports/.gitkeep
+game/output/
+
+# Generated KCD2 mod packages are built from the locally installed game.
+# Do not publish repacked game localization/content files.
+kcd2_mod/build/
+kcd2_mod/dist/
+kcd2_mod/*.pak

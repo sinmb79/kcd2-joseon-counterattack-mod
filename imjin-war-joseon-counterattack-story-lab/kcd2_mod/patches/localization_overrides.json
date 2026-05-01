@@ -1,0 +1,138 @@
+{
+  "modId": "joseon_counterattack_early",
+  "titleKo": "조선의 반격: 동래성의 새벽",
+  "titleEn": "Joseon's Counterattack: Dawn of Dongnae",
+  "entry": "text_ui_menus.xml",
+  "languages": [
+    {
+      "pak": "Korean_xml.pak",
+      "rows": [
+        {
+          "id": "generic_savegame_name",
+          "english": "Joseon's Counterattack: Dawn of Dongnae",
+          "localized": "조선의 반격: 동래성의 새벽"
+        },
+        {
+          "id": "ui_NewGame",
+          "english": "Start Dawn of Dongnae",
+          "localized": "동래성의 새벽 시작"
+        },
+        {
+          "id": "ui_Continue",
+          "english": "Continue Joseon's Counterattack",
+          "localized": "조선의 반격 계속하기"
+        },
+        {
+          "id": "ui_LoadGame",
+          "english": "Load Dispatch",
+          "localized": "장계 불러오기"
+        },
+        {
+          "id": "ui_SaveGame",
+          "english": "Save Dispatch",
+          "localized": "장계 저장"
+        },
+        {
+          "id": "ui_Settings",
+          "english": "Battle Settings",
+          "localized": "전장 설정"
+        },
+        {
+          "id": "ui_Game",
+          "english": "Early Joseon Front",
+          "localized": "조선 초기전"
+        },
+        {
+          "id": "ui_ExitGame",
+          "english": "Leave the battlefield?",
+          "localized": "전장을 떠나시겠습니까?"
+        },
+        {
+          "id": "log_game_loaded",
+          "english": "Dispatch loaded",
+          "localized": "장계 불러오기 완료"
+        },
+        {
+          "id": "log_game_saved",
+          "english": "Dispatch saved",
+          "localized": "장계 저장 완료"
+        },
+        {
+          "id": "PostGameActivity_name",
+          "english": "Hold the Southern Road",
+          "localized": "남해로를 지켜라"
+        },
+        {
+          "id": "PostGameActivity_description",
+          "english": "Yi Sun-sin lives. Hold the landward road while the southern fleet prepares its counterstroke.",
+          "localized": "이순신은 살아 있다. 남해 수군이 반격을 준비하는 동안 육로를 지켜라."
+        }
+      ]
+    },
+    {
+      "pak": "English_xml.pak",
+      "rows": [
+        {
+          "id": "generic_savegame_name",
+          "english": "Joseon's Counterattack: Dawn of Dongnae",
+          "localized": "Joseon's Counterattack: Dawn of Dongnae"
+        },
+        {
+          "id": "ui_NewGame",
+          "english": "Start Dawn of Dongnae",
+          "localized": "Start Dawn of Dongnae"
+        },
+        {
+          "id": "ui_Continue",
+          "english": "Continue Joseon's Counterattack",
+          "localized": "Continue Joseon's Counterattack"
+        },
+        {
+          "id": "ui_LoadGame",
+          "english": "Load Dispatch",
+          "localized": "Load Dispatch"
+        },
+        {
+          "id": "ui_SaveGame",
+          "english": "Save Dispatch",
+          "localized": "Save Dispatch"
+        },
+        {
+          "id": "ui_Settings",
+          "english": "Battle Settings",
+          "localized": "Battle Settings"
+        },
+        {
+          "id": "ui_Game",
+          "english": "Early Joseon Front",
+          "localized": "Early Joseon Front"
+        },
+        {
+          "id": "ui_ExitGame",
+          "english": "Leave the battlefield?",
+          "localized": "Leave the battlefield?"
+        },
+        {
+          "id": "log_game_loaded",
+          "english": "Dispatch loaded",
+          "localized": "Dispatch loaded"
+        },
+        {
+          "id": "log_game_saved",
+          "english": "Dispatch saved",
+          "localized": "Dispatch saved"
+        },
+        {
+          "id": "PostGameActivity_name",
+          "english": "Hold the Southern Road",
+          "localized": "Hold the Southern Road"
+        },
+        {
+          "id": "PostGameActivity_description",
+          "english": "Yi Sun-sin lives. Hold the landward road while the southern fleet prepares its counterstroke.",
+          "localized": "Yi Sun-sin lives. Hold the landward road while the southern fleet prepares its counterstroke."
+        }
+      ]
+    }
+  ]
+}

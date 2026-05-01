@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>조선의 반격: 동래성의 새벽</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="game-frame" aria-label="조선의 반격 팬픽 게임">
+        <canvas id="game" width="960" height="600"></canvas>
+        <div id="menu" class="menu">
+          <div class="menu-panel">
+            <p class="kicker">1592년 4월, 전쟁 초기 지상전</p>
+            <h1>조선의 반격: 동래성의 새벽</h1>
+            <p>
+              부산진의 급보를 동래성으로 잇고, 피난민과 장계, 봉화를 지켜
+              살아 있는 이순신 장군에게 남해의 위기를 전하십시오.
+            </p>
+            <button id="start-btn" type="button">전쟁 초기 시작</button>
+          </div>
+        </div>
+      </section>
+      <aside class="notes">
+        <strong>조작</strong>
+        <span>WASD/방향키 이동</span>
+        <span>Space/클릭 공격</span>
+        <span>E 상호작용</span>
+        <span>Q 화차 배치</span>
+        <span>R 재시작, F 전체화면</span>
+      </aside>
+    </main>
+    <script src="./src/game.js"></script>
+  </body>
+</html>
+

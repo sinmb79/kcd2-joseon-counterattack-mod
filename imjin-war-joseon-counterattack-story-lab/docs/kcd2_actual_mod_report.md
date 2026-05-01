@@ -1,0 +1,86 @@
+# KCD2 실제 설치 폴더 적용 보고
+
+작성일: 2026-05-01
+
+## 결론
+
+`Kingdom Come: Deliverance II` 실제 설치 폴더에 원본 보존형 팬픽 모드를 설치했습니다.
+
+```text
+C:\Program Files (x86)\Steam\steamapps\common\KingdomComeDeliverance2\Mods\joseon_counterattack_early
+```
+
+이 모드는 KCD2 원본 `Data`와 `Localization` 파일을 덮어쓰지 않고, `Mods` 폴더에 별도 모드로 들어갑니다.
+
+## 설치된 파일
+
+```text
+Mods\joseon_counterattack_early\mod.manifest
+Mods\joseon_counterattack_early\Localization\Korean_xml.pak
+Mods\joseon_counterattack_early\Localization\English_xml.pak
+Mods\joseon_counterattack_early\INSTALL_SUMMARY.txt
+```
+
+## 반영된 문구 예시
+
+- `새 게임` -> `동래성의 새벽 시작`
+- `계속하기` -> `조선의 반격 계속하기`
+- `불러오기` -> `장계 불러오기`
+- `게임 저장` -> `장계 저장`
+- `설정` -> `전장 설정`
+- `Kingdom Come: Deliverance II` -> `조선의 반격: 동래성의 새벽`
+- `이순신은 살아 있다. 남해 수군이 반격을 준비하는 동안 육로를 지켜라.`
+
+## 검증
+
+다음 명령을 실행해 성공했습니다.
+
+```powershell
+.\kcd2_mod\scripts\verify_install.ps1
+```
+
+검증 결과:
+
+```json
+{
+  "status": "ok",
+  "modRoot": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\KingdomComeDeliverance2\\Mods\\joseon_counterattack_early",
+  "paks": [
+    {
+      "pak": "Korean_xml.pak",
+      "entry": "text_ui_menus.xml",
+      "matchedNeedles": 3
+    },
+    {
+      "pak": "English_xml.pak",
+      "entry": "text_ui_menus.xml",
+      "matchedNeedles": 3
+    }
+  ]
+}
+```
+
+## 적용 구조
+
+```mermaid
+flowchart LR
+  A["KCD2 Localization 원본 pak"] --> B["로컬 빌드 스크립트"]
+  C["조선 초기전 문구 패치"] --> B
+  B --> D["KCD2 Mods 폴더"]
+  D --> E["게임 실행 시 모드 로드"]
+```
+
+## 왜 이 방식인가
+
+Deep Silver의 KCD2 모딩 안내는 수동 설치 시 게임 루트의 `mods/` 폴더에 모드 폴더를 넣고 `mod.manifest`를 포함하라고 설명합니다. 또한 배포용 게임은 `mod.manifest`와 `mod.cfg` 외의 loose file을 읽지 않으므로 `.pak` 패키징이 필요합니다.
+
+참고:
+
+- [Deep Silver - Modding in Kingdom Come: Deliverance 2](https://www.deepsilver.com/games/kingdom-come-deliverance-ii/news/modding-in-kingdom-come-deliverance-2)
+- [KCD2 Modding Hub - Default Mod Structure](https://modskcd2.com/kingdom-come-deliverance-2-modding-hub/)
+
+## 캐릭터와 이미지 교체 단계
+
+보스가 요청한 “조선의 반격의 캐릭터/이미지 데이터 활용”은 최종 목표로 남겼습니다. 다만 다른 상용 게임의 캐릭터와 이미지 파일을 KCD2에 그대로 복사하는 방식은 권리 문제가 있고, KCD2의 모델/텍스처는 CryEngine 자산 파이프라인이 필요합니다.
+
+따라서 이번 1차 적용은 실제 게임에서 읽히는 안전한 모드 구조와 UI/세계관 반영을 먼저 완료했습니다. 다음 단계는 직접 제작 또는 권리 확인된 조선 복식/무기/문장 이미지를 KCD2 Modding Tools로 변환해 `Data/*.pak` 형태로 추가하는 방향이 맞습니다.

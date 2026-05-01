@@ -1,0 +1,14 @@
+{
+  "project": "imjin-war-joseon-counterattack-story-lab",
+  "created_at": "2026-05-01",
+  "language": "ko",
+  "current_target": "Kingdom Come: Deliverance II installed-folder fan mod",
+  "working_title": "조선의 반격: 동래성의 새벽",
+  "kcd2_install_path": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\KingdomComeDeliverance2",
+  "kcd2_mod_path": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\KingdomComeDeliverance2\\Mods\\joseon_counterattack_early",
+  "mod_id": "joseon_counterattack_early",
+  "reference_direction": "Imjin War early Joseon land-defense mood; Yi Sun-sin remains alive",
+  "public_output_rule": "do not publish repacked commercial game assets, personal voice paths, or private local captures; publish scripts, docs, and original planning only",
+  "primary_voice_if_adapted": "local-private-shared-voice",
+  "status": "installed_local_kcd2_mod"
+}

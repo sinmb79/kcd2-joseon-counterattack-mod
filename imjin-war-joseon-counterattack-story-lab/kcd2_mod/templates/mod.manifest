@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kcd_mod>
+  <info>
+    <name>Joseon Counterattack Early Front</name>
+    <modid>joseon_counterattack_early</modid>
+    <description>Early Imjin War Joseon land-front fanfic localization layer. Yi Sun-sin remains alive as the southern strategic axis.</description>
+    <author>Boss and Julia</author>
+    <version>0.1.0</version>
+    <created_on>2026-05-01</created_on>
+  </info>
+</kcd_mod>
