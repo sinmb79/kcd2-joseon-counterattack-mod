@@ -16,6 +16,7 @@ C:\Program Files (x86)\Steam\steamapps\common\KingdomComeDeliverance2\Mods\joseo
 - `Korean_xml.pak`, `English_xml.pak` 로컬 생성 및 배치
 - `Data\joseon_counterattack_early.pak` 생성 및 배치
 - 메인 UI와 전투 튜토리얼 일부를 `조선의 반격: 동래성의 새벽` 톤으로 변경
+- 장편 캠페인 텍스트팩 적용: 퀘스트 8,892행, 아이템/제조법 5,267행, 능력/상태 3,468행 치환
 - 휴대량, 공격 기력 소모, 활 조작, 전장 이동, 수리비, 전투 성장 수치 조정
 - 전쟁 초기, 부산진/동래성 압박, 지상전 중심, 이순신 생존 원칙 반영
 - 원본 `Data`와 `Localization` 폴더는 수정하지 않음
@@ -46,6 +47,7 @@ play_kcd2_joseon_mod.bat
 - `Localization\Korean_xml.pak`
 - `Localization\English_xml.pak`
 - `Data\joseon_counterattack_early.pak`
+- `text_ui_quest.xml`, `text_ui_items.xml`, `text_ui_soul.xml` 전면 치환 여부
 - `Libs/Tables/rpg/rpg_param__joseon_counterattack_early.xml`
 
 ## 구조
@@ -68,3 +70,5 @@ flowchart TD
 ## 현재 완료 판정
 
 보스가 바로 실행해서 KCD2 안에서 확인할 수 있는 필수 모드 개발은 완료했습니다. 남은 것은 “추가 확장”에 해당합니다. 현재 패키지는 원본 게임을 망가뜨리지 않는 선에서 실제 KCD2 모드 로더가 읽을 수 있는 현지화 pak과 gameplay pak을 모두 갖춘 상태입니다.
+
+장편 서사는 [long_campaign_outline.md](docs/long_campaign_outline.md)에 정리했습니다.

@@ -1,0 +1,529 @@
+{
+  "enabled": true,
+  "entries": [
+    {
+      "entry": "text_ui_quest.xml",
+      "mode": "quest"
+    },
+    {
+      "entry": "text_ui_items.xml",
+      "mode": "item"
+    },
+    {
+      "entry": "text_ui_soul.xml",
+      "mode": "soul"
+    }
+  ],
+  "ko": {
+    "questChapters": [
+      {
+        "code": "1장",
+        "title": "부산진의 붉은 봉수",
+        "objective": "부산진에서 올라온 급보를 확보하고 동래성으로 향하는 길을 여십시오.",
+        "journal": "남쪽 바다의 봉수가 동시에 올랐습니다. 전령의 피 묻은 장계에는 왜군 선봉이 상륙했다는 짧은 문장만 남아 있습니다.",
+        "complication": "길목마다 피난민과 패잔병이 섞여 있어 진짜 장계를 가진 자를 구별하기 어렵습니다."
+      },
+      {
+        "code": "2장",
+        "title": "동래성의 문",
+        "objective": "동래성 관아에 방어 태세를 알리고 성문 주변의 혼란을 정리하십시오.",
+        "journal": "성 안의 사람들은 싸울지 물러날지조차 결정하지 못했습니다. 그러나 시간이 없습니다.",
+        "complication": "적의 전령이 항복 권고를 들고 왔고, 성 안에서는 길을 빌려주자는 속삭임이 번지고 있습니다."
+      },
+      {
+        "code": "3장",
+        "title": "길 위의 장계",
+        "objective": "조정과 수군영으로 갈 장계를 둘로 나누어 각각의 전령에게 맡기십시오.",
+        "journal": "하나의 문서가 불타도 다른 하나가 살아야 합니다. 전쟁의 첫날에는 종이 한 장이 성 하나보다 무거울 수 있습니다.",
+        "complication": "산길에 매복한 적 척후가 전령의 이동을 기다리고 있습니다."
+      },
+      {
+        "code": "4장",
+        "title": "조총 소리",
+        "objective": "적 조총수의 사격 간격을 파악하고 근접전으로 밀어붙이십시오.",
+        "journal": "처음 듣는 총성에 병사들이 얼어붙었습니다. 두려움을 이기는 법은 소리를 이해하는 것입니다.",
+        "complication": "비가 내리기 시작했지만 적은 화약을 아끼며 사격 대열을 바꾸고 있습니다."
+      },
+      {
+        "code": "5장",
+        "title": "피난 행렬",
+        "objective": "피난민을 산길로 돌리고 식량 수레를 관아 창고까지 호송하십시오.",
+        "journal": "살아남은 백성은 내일의 병사이자 증인입니다. 길을 지키는 일도 전투입니다.",
+        "complication": "굶주린 패잔병들이 군량을 먼저 차지하려 하고 있습니다."
+      },
+      {
+        "code": "6장",
+        "title": "남해 수군의 편지",
+        "objective": "이순신 장군에게 보낼 해안 방비 정보를 잃지 말고 봉인하십시오.",
+        "journal": "이순신은 살아 있습니다. 그는 바다에서 시간을 만들고, 우리는 땅에서 그 시간을 지켜야 합니다.",
+        "complication": "가짜 봉인을 든 자가 나타나 수군영으로 가는 길을 묻고 있습니다."
+      },
+      {
+        "code": "7장",
+        "title": "관군과 의병",
+        "objective": "흩어진 관군과 의병장을 설득해 같은 봉화 신호를 쓰게 하십시오.",
+        "journal": "명령 체계가 무너진 곳에서는 약속이 군율을 대신합니다.",
+        "complication": "서로를 의심하는 두 부대가 먼저 지휘권을 요구하고 있습니다."
+      },
+      {
+        "code": "8장",
+        "title": "창고의 밤",
+        "objective": "전시 창고의 열쇠를 찾아 화살, 붕대, 곡식을 분배하십시오.",
+        "journal": "창고 문이 열리면 사람은 살고, 닫히면 성은 오래 버티지 못합니다.",
+        "complication": "누군가 군량 장부를 조작해 일부 물자를 빼돌렸습니다."
+      },
+      {
+        "code": "9장",
+        "title": "왜군 척후",
+        "objective": "숲을 통과하는 적 척후조를 추적해 본대의 진격로를 알아내십시오.",
+        "journal": "전쟁의 방향은 큰 깃발이 아니라 작은 발자국에서 먼저 드러납니다.",
+        "complication": "척후 중 하나가 조선말을 알아듣고 거짓 정보를 흘리고 있습니다."
+      },
+      {
+        "code": "10장",
+        "title": "무너진 나루",
+        "objective": "불탄 나루터를 우회하고 강 건너 방어선에 도착하십시오.",
+        "journal": "물길은 끊겼지만 소식은 건너야 합니다.",
+        "complication": "나룻배를 숨긴 마을 사람들이 군과 백성 중 누구를 먼저 태울지 다투고 있습니다."
+      },
+      {
+        "code": "11장",
+        "title": "첫 반격",
+        "objective": "소규모 야습으로 적 보급대를 치고 포로와 말을 되찾으십시오.",
+        "journal": "큰 승리는 아직 멀지만 작은 반격은 사람들의 등을 펴게 합니다.",
+        "complication": "포로 중 한 명이 적의 길잡이로 협박받고 있었습니다."
+      },
+      {
+        "code": "12장",
+        "title": "관아의 재판",
+        "objective": "혼란을 틈탄 약탈자를 조사하고 억울한 피난민을 풀어주십시오.",
+        "journal": "전쟁 중에도 법이 사라지면 우리가 지키려던 나라가 먼저 무너집니다.",
+        "complication": "증인은 모두 같은 밤을 다르게 기억합니다."
+      },
+      {
+        "code": "13장",
+        "title": "화약과 물",
+        "objective": "젖은 화약을 말리고 남은 화살촉을 다시 벼리십시오.",
+        "journal": "무기는 전장 밖에서 먼저 이깁니다. 대장간의 불빛도 봉화입니다.",
+        "complication": "대장장이가 자기 가족을 찾으러 떠나려 합니다."
+      },
+      {
+        "code": "14장",
+        "title": "밀서",
+        "objective": "왜군 진영으로 넘어간 밀서를 회수하고 배신자의 동기를 확인하십시오.",
+        "journal": "배신은 탐욕만으로 오지 않습니다. 공포도 사람을 팔아넘깁니다.",
+        "complication": "밀서에는 거짓 명령과 진짜 피난로가 함께 적혀 있습니다."
+      },
+      {
+        "code": "15장",
+        "title": "산성의 사람들",
+        "objective": "산성으로 모인 백성에게 초소와 물길을 배정하십시오.",
+        "journal": "성은 돌이 아니라 사람의 순서로 버팁니다.",
+        "complication": "식수가 모자라자 일부가 밤에 산성을 떠나려 합니다."
+      },
+      {
+        "code": "16장",
+        "title": "수군의 그림자",
+        "objective": "해안 감시망을 복구하고 남해 수군에 적선 수를 전달하십시오.",
+        "journal": "바다의 승리는 아직 보이지 않지만, 그 준비는 산 위의 눈에서 시작됩니다.",
+        "complication": "안개가 짙어 적선과 피난 배를 구분하기 어렵습니다."
+      },
+      {
+        "code": "17장",
+        "title": "의병의 깃발",
+        "objective": "세 마을의 의병을 모아 야간 신호와 퇴각 지점을 통일하십시오.",
+        "journal": "각자의 원한이 하나의 깃발 아래 모일 때 전쟁은 다른 모양이 됩니다.",
+        "complication": "한 의병장은 관군을 믿지 못해 독자 공격을 고집합니다."
+      },
+      {
+        "code": "18장",
+        "title": "성 밖의 새벽",
+        "objective": "성 밖에 남은 부상자를 데려오고 추격대를 따돌리십시오.",
+        "journal": "새벽은 살아남은 자에게만 옵니다. 문을 열 시간은 한 번뿐입니다.",
+        "complication": "적이 부상자를 미끼로 삼아 성문을 열게 만들려 합니다."
+      },
+      {
+        "code": "19장",
+        "title": "임금의 길",
+        "objective": "북상하는 조정의 행로를 확인하고 민심을 달랠 말을 준비하십시오.",
+        "journal": "왕의 길이 멀어질수록 백성의 분노는 가까워집니다.",
+        "complication": "피난 행렬 속에 왕명을 사칭하는 자가 섞였습니다."
+      },
+      {
+        "code": "20장",
+        "title": "불타는 장부",
+        "objective": "사라진 군량 장부를 복원하고 실제 남은 물자를 조사하십시오.",
+        "journal": "숫자를 잃으면 굶주림은 더 빨리 옵니다.",
+        "complication": "장부를 태운 자가 적이 아니라 아군일 수 있습니다."
+      },
+      {
+        "code": "21장",
+        "title": "다시 남쪽으로",
+        "objective": "반격 준비를 위해 남쪽 길을 정찰하고 적 보급선을 표시하십시오.",
+        "journal": "밀려난 길을 다시 보는 일은 두렵지만, 돌아갈 길을 아는 자만 반격합니다.",
+        "complication": "적은 일부러 빈 보급 수레를 두고 함정을 만들었습니다."
+      },
+      {
+        "code": "22장",
+        "title": "붉은 비",
+        "objective": "폭우 속에서 화살과 화약을 지키고 병사들의 사기를 유지하십시오.",
+        "journal": "비는 양쪽에 내리지만 젖은 마음은 더 빨리 무너집니다.",
+        "complication": "젖은 활시위가 끊어져 궁수들이 전열을 이탈하려 합니다."
+      },
+      {
+        "code": "23장",
+        "title": "첫 승전보",
+        "objective": "수군의 승전 소식을 각 초소에 전달해 사기를 끌어올리십시오.",
+        "journal": "바다에서 들려온 승전보는 무너진 길 위에 다시 발을 딛게 합니다.",
+        "complication": "적은 승전보를 거짓 소문이라 퍼뜨리며 민심을 흔듭니다."
+      },
+      {
+        "code": "24장",
+        "title": "반격의 지도",
+        "objective": "의병로, 관군로, 수군 연락로를 하나의 지도에 합치십시오.",
+        "journal": "각자 살아남은 길이 하나로 이어질 때 반격은 작전이 됩니다.",
+        "complication": "지도에는 아직 지키지 못한 마을의 이름이 너무 많습니다."
+      }
+    ],
+    "items": [
+      {
+        "name": "동래성 장계",
+        "description": "부산진과 동래성의 급보를 담은 봉인 문서. 잃으면 한 지역의 방어가 하루 늦어집니다."
+      },
+      {
+        "name": "남해 수군 봉서",
+        "description": "이순신 장군에게 전달해야 할 해안 방비 보고서입니다. 봉인이 살아 있어야 믿음을 얻습니다."
+      },
+      {
+        "name": "의병의 붉은 띠",
+        "description": "마을 사람들이 서로를 알아보기 위해 묶은 천입니다. 작은 천이지만 밤길에서는 깃발이 됩니다."
+      },
+      {
+        "name": "동래 활 묶음",
+        "description": "급히 모은 활과 화살입니다. 성문 앞에서는 완벽한 무기보다 제때 도착한 무기가 더 귀합니다."
+      },
+      {
+        "name": "전시 붕대 꾸러미",
+        "description": "찢은 베와 약초를 함께 묶었습니다. 부상자를 살리는 일은 전선을 지키는 일입니다."
+      },
+      {
+        "name": "산성 물표",
+        "description": "산성의 우물과 샘을 표시한 나무패입니다. 식수를 아는 자가 포위를 견딥니다."
+      },
+      {
+        "name": "화약 방습 주머니",
+        "description": "기름먹인 천으로 싼 화약 주머니입니다. 비 오는 밤에는 금보다 귀합니다."
+      },
+      {
+        "name": "군량 장부",
+        "description": "곡식, 말먹이, 소금의 수량이 적힌 장부입니다. 숫자를 지키는 것이 사람을 지키는 일입니다."
+      },
+      {
+        "name": "나루터 열쇠",
+        "description": "불탄 나루 뒤에 숨긴 작은 배의 열쇠입니다. 강을 건널 순서를 정해야 합니다."
+      },
+      {
+        "name": "왜군 척후의 표식",
+        "description": "적 척후가 길목에 남긴 표시입니다. 거짓 방향까지 함께 읽어야 합니다."
+      },
+      {
+        "name": "봉화 기름병",
+        "description": "비바람 속에서도 봉화를 살리기 위한 기름입니다. 불빛 하나가 군영 셋을 깨울 수 있습니다."
+      },
+      {
+        "name": "대장간 쇠못",
+        "description": "성문과 수레를 급히 고치기 위한 못입니다. 전쟁은 칼뿐 아니라 못으로도 버팁니다."
+      }
+    ],
+    "recipeSteps": [
+      "물 한 사발에 말린 쑥과 소금을 넣고 끓여 전시 상처를 씻을 탕약을 준비하십시오.",
+      "젖은 활시위를 풀어 불가에 말리고, 기름먹인 천으로 다시 감싸십시오.",
+      "찧은 약초를 베 위에 펴고 피가 멎을 때까지 단단히 묶으십시오.",
+      "화약은 물기와 멀리 두고, 봉화 기름은 마지막 순간까지 봉하지 마십시오.",
+      "군량죽은 오래 끓이지 말고 나누기 쉽게 묽게 만드십시오.",
+      "밤길 전령에게는 술이 아니라 소금물과 말린 곡식을 주십시오."
+    ],
+    "traits": [
+      {
+        "name": "전령의 숨",
+        "description": "장계를 품은 동안 더 오래 달릴 수 있습니다. 그러나 쓰러지면 소식도 함께 멈춥니다."
+      },
+      {
+        "name": "성문 방어",
+        "description": "좁은 길과 문 앞에서 버틸 때 사기가 오릅니다."
+      },
+      {
+        "name": "남해의 약속",
+        "description": "이순신 장군이 살아 있다는 소식이 병사들의 등을 곧게 세웁니다."
+      },
+      {
+        "name": "의병의 맹세",
+        "description": "민가를 지킬 때 설득과 명성이 조금 더 힘을 얻습니다."
+      },
+      {
+        "name": "젖은 화약",
+        "description": "비바람 속에서는 원거리 전투가 흔들립니다. 준비된 자만 쏠 수 있습니다."
+      },
+      {
+        "name": "반격의 불씨",
+        "description": "작은 승리가 이어질수록 다음 전투의 두려움이 줄어듭니다."
+      }
+    ]
+  },
+  "en": {
+    "questChapters": [
+      {
+        "code": "Chapter 1",
+        "title": "The Red Beacon of Busanjin",
+        "objective": "Secure the emergency dispatch from Busanjin and open the road to Dongnae Fortress.",
+        "journal": "The southern beacons rose together. The blood-marked dispatch says only this: the vanguard has landed.",
+        "complication": "Refugees and broken soldiers crowd every road, making the true courier hard to find."
+      },
+      {
+        "code": "Chapter 2",
+        "title": "The Gate of Dongnae",
+        "objective": "Warn the Dongnae magistracy and restore order around the gate.",
+        "journal": "The people inside the walls have not decided whether to fight or flee. There is no time left.",
+        "complication": "An enemy envoy carries a demand for passage, and whispers of surrender spread within the town."
+      },
+      {
+        "code": "Chapter 3",
+        "title": "Dispatch on the Road",
+        "objective": "Split the dispatch for the court and the naval command, then assign riders to both routes.",
+        "journal": "If one paper burns, the other must live. On the first day of war, a sheet of paper can outweigh a fortress.",
+        "complication": "Enemy scouts are waiting along the mountain road."
+      },
+      {
+        "code": "Chapter 4",
+        "title": "The Sound of Arquebuses",
+        "objective": "Learn the enemy firing rhythm and close the distance for hand-to-hand fighting.",
+        "journal": "The first gunshots froze the line. Fear loosens when the sound is understood.",
+        "complication": "Rain begins, but the enemy saves powder and changes formation."
+      },
+      {
+        "code": "Chapter 5",
+        "title": "The Refugee Column",
+        "objective": "Turn the refugees toward the hill road and escort the grain carts to the storehouse.",
+        "journal": "Survivors are tomorrow's soldiers and witnesses. Guarding a road is also a battle.",
+        "complication": "Hungry stragglers try to seize the supplies first."
+      },
+      {
+        "code": "Chapter 6",
+        "title": "Letter to the Southern Fleet",
+        "objective": "Seal the coastal defense report that must reach Admiral Yi Sun-sin.",
+        "journal": "Yi Sun-sin lives. He will make time at sea; we must protect that time on land.",
+        "complication": "A man with a false seal asks the way to the naval camp."
+      },
+      {
+        "code": "Chapter 7",
+        "title": "Regulars and Righteous Armies",
+        "objective": "Persuade scattered troops and militia leaders to share one beacon signal.",
+        "journal": "Where command has broken, promises must stand in for discipline.",
+        "complication": "Two bands distrust each other and demand command."
+      },
+      {
+        "code": "Chapter 8",
+        "title": "Night of the Storehouse",
+        "objective": "Find the wartime storehouse key and distribute arrows, bandages, and grain.",
+        "journal": "If the storehouse opens, people live. If it remains shut, the wall will not hold long.",
+        "complication": "Someone altered the ledgers and removed part of the supplies."
+      },
+      {
+        "code": "Chapter 9",
+        "title": "Enemy Scouts",
+        "objective": "Track the scouts through the woods and discover the main army's road.",
+        "journal": "The direction of war appears first in small footprints, not great banners.",
+        "complication": "One scout understands Korean and leaves false clues."
+      },
+      {
+        "code": "Chapter 10",
+        "title": "The Broken Ferry",
+        "objective": "Bypass the burned ferry and reach the defense line across the river.",
+        "journal": "The waterway is cut, but the warning must cross.",
+        "complication": "Villagers with a hidden boat argue over who should cross first."
+      },
+      {
+        "code": "Chapter 11",
+        "title": "The First Counterstroke",
+        "objective": "Strike an enemy supply party at night and recover prisoners and horses.",
+        "journal": "A great victory is far away, but a small counterstroke straightens men's backs.",
+        "complication": "One prisoner was forced to guide the enemy."
+      },
+      {
+        "code": "Chapter 12",
+        "title": "Trial at the Magistracy",
+        "objective": "Investigate wartime looters and free wrongly accused refugees.",
+        "journal": "If law vanishes in war, the country we defend collapses first.",
+        "complication": "Every witness remembers the same night differently."
+      },
+      {
+        "code": "Chapter 13",
+        "title": "Powder and Water",
+        "objective": "Dry the wet powder and reforge the remaining arrowheads.",
+        "journal": "Weapons win before they reach the field. The forge fire is a beacon too.",
+        "complication": "The smith wants to leave in search of his family."
+      },
+      {
+        "code": "Chapter 14",
+        "title": "The Secret Letter",
+        "objective": "Recover a letter sent toward the enemy camp and learn why it was written.",
+        "journal": "Betrayal is not born of greed alone. Fear can sell a man as quickly.",
+        "complication": "The letter contains both false orders and a real refugee route."
+      },
+      {
+        "code": "Chapter 15",
+        "title": "People of the Hill Fortress",
+        "objective": "Assign posts and water routes to the civilians gathered at the hill fortress.",
+        "journal": "A fortress holds by the order of its people, not by stone alone.",
+        "complication": "Water is running short, and some want to leave by night."
+      },
+      {
+        "code": "Chapter 16",
+        "title": "Shadow of the Navy",
+        "objective": "Restore the coastal watch and send the enemy ship count to the southern fleet.",
+        "journal": "The sea victory is not visible yet, but its preparation begins with eyes on the hills.",
+        "complication": "Fog makes it hard to tell warships from refugee boats."
+      },
+      {
+        "code": "Chapter 17",
+        "title": "The Militia Banner",
+        "objective": "Unite three village militias around one night signal and one fallback point.",
+        "journal": "When private grief gathers under one banner, the war changes shape.",
+        "complication": "One militia leader refuses to trust the regular army."
+      },
+      {
+        "code": "Chapter 18",
+        "title": "Dawn Outside the Walls",
+        "objective": "Bring in the wounded left outside the gate and shake off the pursuers.",
+        "journal": "Dawn comes only for the living. The gate can open only once.",
+        "complication": "The enemy uses wounded men as bait."
+      },
+      {
+        "code": "Chapter 19",
+        "title": "The King's Road",
+        "objective": "Confirm the court's northern route and prepare words to calm the people.",
+        "journal": "As the king's road lengthens, the anger of the people draws closer.",
+        "complication": "A false royal order is moving through the refugee column."
+      },
+      {
+        "code": "Chapter 20",
+        "title": "The Burning Ledger",
+        "objective": "Rebuild the lost supply ledger and count what remains.",
+        "journal": "When numbers are lost, hunger arrives faster.",
+        "complication": "The ledger may have been burned by one of our own."
+      },
+      {
+        "code": "Chapter 21",
+        "title": "South Again",
+        "objective": "Scout the southern road for the coming counterstroke and mark enemy supplies.",
+        "journal": "It is frightening to face the road that drove us back, but only those who know it can return.",
+        "complication": "The enemy has left empty carts as bait."
+      },
+      {
+        "code": "Chapter 22",
+        "title": "Red Rain",
+        "objective": "Protect arrows and powder in the storm and keep morale from breaking.",
+        "journal": "Rain falls on both armies, but a wet heart collapses first.",
+        "complication": "Bowstrings snap in the rain and archers begin leaving the line."
+      },
+      {
+        "code": "Chapter 23",
+        "title": "First News of Victory",
+        "objective": "Carry news of the fleet's victory to every watchpost.",
+        "journal": "A victory at sea lets men stand again on a ruined road.",
+        "complication": "The enemy spreads rumors that the news is false."
+      },
+      {
+        "code": "Chapter 24",
+        "title": "Map of the Counterattack",
+        "objective": "Join the militia roads, army roads, and naval courier roads into one map.",
+        "journal": "When every survivor's path becomes one line, resistance becomes an operation.",
+        "complication": "Too many villages on the map are still undefended."
+      }
+    ],
+    "items": [
+      {
+        "name": "Dongnae Dispatch",
+        "description": "A sealed report from Busanjin and Dongnae. Lose it, and a district's defense may be delayed by a day."
+      },
+      {
+        "name": "Letter to the Southern Fleet",
+        "description": "A coastal defense report meant for Admiral Yi Sun-sin. Its seal must remain intact."
+      },
+      {
+        "name": "Militia Red Sash",
+        "description": "A strip of cloth used by villagers to recognize one another. At night, it is as good as a banner."
+      },
+      {
+        "name": "Dongnae Bow Bundle",
+        "description": "Hurriedly gathered bows and arrows. A timely weapon matters more than a perfect one."
+      },
+      {
+        "name": "Wartime Bandage Roll",
+        "description": "Torn cloth and herbs bound together. Saving the wounded is another way to hold the line."
+      },
+      {
+        "name": "Hill-Fort Water Token",
+        "description": "A wooden mark showing wells and springs. The one who knows the water can survive a siege."
+      },
+      {
+        "name": "Powderproof Pouch",
+        "description": "A powder pouch wrapped in oiled cloth. On a rainy night, it is worth more than silver."
+      },
+      {
+        "name": "Supply Ledger",
+        "description": "A ledger of grain, fodder, and salt. Guarding numbers means guarding lives."
+      },
+      {
+        "name": "Ferry Key",
+        "description": "The key to a small boat hidden beyond the burned ferry. Someone must decide who crosses first."
+      },
+      {
+        "name": "Scout Mark",
+        "description": "A mark left by enemy scouts. False directions must be read together with true ones."
+      },
+      {
+        "name": "Beacon Oil Flask",
+        "description": "Oil for keeping a beacon alive in bad weather. One light can wake three camps."
+      },
+      {
+        "name": "Forge Nails",
+        "description": "Nails for repairing gates and carts. A war is held together by iron both large and small."
+      }
+    ],
+    "recipeSteps": [
+      "Boil mugwort and salt in water to prepare a wartime wash for wounds.",
+      "Unstring the wet bow, dry it by the fire, and wrap it again in oiled cloth.",
+      "Spread crushed herbs over linen and bind the wound until the bleeding slows.",
+      "Keep powder away from damp air and leave the beacon oil sealed until the final moment.",
+      "Cook the grain thin so it can be divided quickly among the line.",
+      "Give the night courier salt water and dried grain, not drink."
+    ],
+    "traits": [
+      {
+        "name": "Courier's Breath",
+        "description": "While carrying a dispatch, you can push farther. If you fall, the message falls with you."
+      },
+      {
+        "name": "Gate Defense",
+        "description": "Morale rises when holding narrow roads and gates."
+      },
+      {
+        "name": "Promise of the Southern Sea",
+        "description": "News that Admiral Yi lives stiffens the backs of tired soldiers."
+      },
+      {
+        "name": "Militia Oath",
+        "description": "When protecting villages, persuasion and reputation carry more weight."
+      },
+      {
+        "name": "Wet Powder",
+        "description": "Rain unsettles ranged combat. Only the prepared can fire."
+      },
+      {
+        "name": "Spark of Counterattack",
+        "description": "Small victories make the next battle less frightening."
+      }
+    ]
+  }
+}

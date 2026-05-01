@@ -33,6 +33,22 @@ Mods\joseon_counterattack_early\INSTALL_SUMMARY.txt
 - `이순신은 살아 있다. 남해 수군이 반격을 준비하는 동안 육로를 지켜라.`
 - 전투 튜토리얼 일부가 `지상전`, `전장 명령`, `장계와 남해 수군이 움직일 시간` 톤으로 변경
 
+## 장편 캠페인 전면 치환
+
+`long_campaign_overrides.json`을 통해 다음 엔트리를 전면 치환했습니다.
+
+| 엔트리 | 행 수 | 적용 내용 |
+|---|---:|---|
+| `text_ui_quest.xml` | 8,892 | 24장 장편 퀘스트/저널/목표 텍스트 |
+| `text_ui_items.xml` | 5,267 | 조선 초기전 아이템, 장계, 보급품, 제조법 텍스트 |
+| `text_ui_soul.xml` | 3,468 | 전령, 성문 방어, 남해 수군, 의병, 젖은 화약 등 능력/상태 텍스트 |
+
+장편 구조 문서:
+
+```text
+docs\long_campaign_outline.md
+```
+
 ## 반영된 플레이 수치
 
 `Data\joseon_counterattack_early.pak` 안에 다음 PTF 테이블을 넣었습니다.
@@ -78,6 +94,21 @@ Libs/Tables/rpg/rpg_param__joseon_counterattack_early.xml
       "matchedNeedles": 3
     },
     {
+      "pak": "Korean_xml.pak",
+      "entry": "text_ui_quest.xml",
+      "matchedNeedles": 3
+    },
+    {
+      "pak": "Korean_xml.pak",
+      "entry": "text_ui_items.xml",
+      "matchedNeedles": 3
+    },
+    {
+      "pak": "Korean_xml.pak",
+      "entry": "text_ui_soul.xml",
+      "matchedNeedles": 3
+    },
+    {
       "pak": "joseon_counterattack_early.pak",
       "entry": "Libs/Tables/rpg/rpg_param__joseon_counterattack_early.xml",
       "patchedParams": 13
@@ -109,7 +140,7 @@ Deep Silver의 KCD2 모딩 안내는 수동 설치 시 게임 루트의 `mods/` 
 
 보스가 요청한 “조선의 반격의 캐릭터/이미지 데이터 활용”은 최종 목표로 남겼습니다. 다만 다른 상용 게임의 캐릭터와 이미지 파일을 KCD2에 그대로 복사하는 방식은 권리 문제가 있고, KCD2의 모델/텍스처는 CryEngine 자산 파이프라인이 필요합니다.
 
-따라서 이번 적용은 실제 게임에서 읽히는 안전한 모드 구조, UI/튜토리얼 세계관 반영, 그리고 플레이 수치 패치까지 완료했습니다. 다음 단계는 직접 제작 또는 권리 확인된 조선 복식/무기/문장 이미지를 KCD2 Modding Tools로 변환해 `Data/*.pak` 형태로 추가하는 확장 작업입니다.
+따라서 이번 적용은 실제 게임에서 읽히는 안전한 모드 구조, UI/튜토리얼 세계관 반영, 퀘스트/아이템/능력 텍스트 전면 치환, 그리고 플레이 수치 패치까지 완료했습니다. 다음 단계는 직접 제작 또는 권리 확인된 조선 복식/무기/문장 이미지를 KCD2 Modding Tools로 변환해 `Data/*.pak` 형태로 추가하는 확장 작업입니다.
 
 ## 완료 판정
 

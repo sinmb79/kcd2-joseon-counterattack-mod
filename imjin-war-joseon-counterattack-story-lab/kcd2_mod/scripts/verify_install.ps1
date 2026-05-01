@@ -18,7 +18,7 @@ $Manifest = Join-Path $ModRoot "mod.manifest"
 $Localization = Join-Path $ModRoot "Localization"
 $Data = Join-Path $ModRoot "Data"
 $RequiredLocalizationPaks = @("Korean_xml.pak", "English_xml.pak")
-$RequiredEntries = @("text_ui_menus.xml", "text_ui_tutorials.xml")
+$RequiredEntries = @("text_ui_menus.xml", "text_ui_tutorials.xml", "text_ui_quest.xml", "text_ui_items.xml", "text_ui_soul.xml")
 $GameplayPak = Join-Path $Data "$ModId.pak"
 $GameplayEntry = [string]$GameplayPatch.patchedEntry
 
@@ -63,6 +63,24 @@ $TutorialNeedles = @(
   'out of stamina'
 )
 
+$QuestNeedles = @(
+  'The Red Beacon of Busanjin',
+  'Yi Sun-sin lives',
+  'Map of the Counterattack'
+)
+
+$ItemNeedles = @(
+  'Dongnae Dispatch',
+  'Letter to the Southern Fleet',
+  'Wartime Bandage Roll'
+)
+
+$SoulNeedles = @(
+  'Courier''s Breath',
+  'Promise of the Southern Sea',
+  'Spark of Counterattack'
+)
+
 $results = @()
 
 if (-not (Test-Path -LiteralPath $Manifest)) {
@@ -77,7 +95,14 @@ foreach ($pak in $RequiredLocalizationPaks) {
 
   foreach ($entry in $RequiredEntries) {
     $text = Get-ZipEntryText -PakPath $pakPath -EntryName $entry
-    $needles = if ($entry -eq "text_ui_menus.xml") { $MenuNeedles } else { $TutorialNeedles }
+    $needles = switch ($entry) {
+      "text_ui_menus.xml" { $MenuNeedles }
+      "text_ui_tutorials.xml" { $TutorialNeedles }
+      "text_ui_quest.xml" { $QuestNeedles }
+      "text_ui_items.xml" { $ItemNeedles }
+      "text_ui_soul.xml" { $SoulNeedles }
+      default { @() }
+    }
     $matches = $needles | Where-Object { $text.Contains($_) }
 
     if (@($matches).Count -lt 3) {

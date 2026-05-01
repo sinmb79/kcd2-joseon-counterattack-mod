@@ -13,9 +13,11 @@ $ProjectRoot = Split-Path -Parent $ScriptRoot
 $RepoRoot = Split-Path -Parent $ProjectRoot
 $PatchPath = Join-Path $ProjectRoot "patches\localization_overrides.json"
 $GameplayPatchPath = Join-Path $ProjectRoot "patches\gameplay_overrides.json"
+$LongPatchPath = Join-Path $ProjectRoot "patches\long_campaign_overrides.json"
 $TemplateManifest = Join-Path $ProjectRoot "templates\mod.manifest"
 $Patch = Get-Content -Raw -Encoding UTF8 -LiteralPath $PatchPath | ConvertFrom-Json
 $GameplayPatch = Get-Content -Raw -Encoding UTF8 -LiteralPath $GameplayPatchPath | ConvertFrom-Json
+$LongPatch = Get-Content -Raw -Encoding UTF8 -LiteralPath $LongPatchPath | ConvertFrom-Json
 $ModId = [string]$Patch.modId
 
 if ($ModId -notmatch '^[a-z_]+$') {
@@ -139,6 +141,91 @@ function New-PakFromDirectory {
   }
 }
 
+function Get-LanguageBank {
+  param(
+    [object]$PatchData,
+    [string]$LanguageCode
+  )
+
+  $property = $PatchData.PSObject.Properties[$LanguageCode]
+  if ($null -eq $property) {
+    throw "Missing language bank '$LanguageCode' in long campaign patch."
+  }
+  return $property.Value
+}
+
+function Get-LongCampaignText {
+  param(
+    [object]$Bank,
+    [string]$Mode,
+    [int]$Index,
+    [string]$RowId
+  )
+
+  if ($Mode -eq "quest") {
+    $chapters = @($Bank.questChapters)
+    $chapterIndex = [int]([Math]::Floor($Index / 4) % $chapters.Count)
+    $chapter = $chapters[$chapterIndex]
+    switch ($Index % 4) {
+      0 { return "$($chapter.code) $($chapter.title)" }
+      1 { return [string]$chapter.objective }
+      2 { return [string]$chapter.journal }
+      default { return [string]$chapter.complication }
+    }
+  }
+
+  if ($Mode -eq "item") {
+    if ($RowId -like "alch_*step*") {
+      $recipes = @($Bank.recipeSteps)
+      return [string]$recipes[$Index % $recipes.Count]
+    }
+
+    $items = @($Bank.items)
+    $item = $items[$Index % $items.Count]
+    if ($RowId -match "(desc|description|lore|text)") {
+      return [string]$item.description
+    }
+    return [string]$item.name
+  }
+
+  if ($Mode -eq "soul") {
+    $traits = @($Bank.traits)
+    $trait = $traits[$Index % $traits.Count]
+    if ($RowId -match "(desc|description|lore|text)") {
+      return [string]$trait.description
+    }
+    return [string]$trait.name
+  }
+
+  throw "Unknown long campaign mode: $Mode"
+}
+
+function Apply-LongCampaignRewrite {
+  param(
+    [xml]$Document,
+    [object]$Rule,
+    [object]$EnglishBank,
+    [object]$LocalizedBank
+  )
+
+  $changed = 0
+  $index = 0
+  foreach ($row in $Document.Table.Row) {
+    $cells = $row.SelectNodes("Cell")
+    if ($cells.Count -lt 3) {
+      continue
+    }
+
+    $rowId = [string]$cells.Item(0).InnerText
+    $cells.Item(1).InnerText = Get-LongCampaignText -Bank $EnglishBank -Mode ([string]$Rule.mode) -Index $index -RowId $rowId
+    $cells.Item(2).InnerText = Get-LongCampaignText -Bank $LocalizedBank -Mode ([string]$Rule.mode) -Index $index -RowId $rowId
+    $changed += 1
+    $index += 1
+  }
+
+  return $changed
+}
+
 if (-not (Test-Path -LiteralPath $GameRoot)) {
   throw "KCD2 game root not found: $GameRoot"
 }
@@ -176,6 +263,10 @@ foreach ($language in $Patch.languages) {
   $languageTemp = Join-Path $BuildRoot ("_localization_temp\" + [System.IO.Path]::GetFileNameWithoutExtension($pakName))
   New-Item -ItemType Directory -Force -Path $languageTemp | Out-Null
 
+  $languageCode = if ($pakName -like "Korean*") { "ko" } else { "en" }
+  $englishBank = Get-LanguageBank -PatchData $LongPatch -LanguageCode "en"
+  $localizedBank = Get-LanguageBank -PatchData $LongPatch -LanguageCode $languageCode
+
   $entrySets = @()
   if ($null -ne $language.entries) {
     $entrySets = @($language.entries)
@@ -186,30 +277,61 @@ foreach ($language in $Patch.languages) {
     })
   }
 
+  $entryNames = [System.Collections.Generic.List[string]]::new()
   foreach ($entrySet in $entrySets) {
-    $entryName = [string]$entrySet.entry
+    $entryNameForSet = [string]$entrySet.entry
+    if (-not $entryNames.Contains($entryNameForSet)) {
+      $entryNames.Add($entryNameForSet)
+    }
+  }
+  if ($LongPatch.enabled) {
+    foreach ($longRule in @($LongPatch.entries)) {
+      $longEntryName = [string]$longRule.entry
+      if (-not $entryNames.Contains($longEntryName)) {
+        $entryNames.Add($longEntryName)
+      }
+    }
+  }
+
+  foreach ($entryName in $entryNames) {
     [xml]$doc = Get-ZipEntryText -PakPath $sourcePak -EntryName $entryName
 
-    foreach ($override in $entrySet.rows) {
-      $rowId = [string]$override.id
-      $row = $doc.Table.Row | Where-Object { $_.Cell[0] -eq $rowId } | Select-Object -First 1
-      if ($null -eq $row) {
-        throw "Row '$rowId' not found in $pakName/$entryName"
+    $longRule = @($LongPatch.entries) | Where-Object { [string]$_.entry -eq $entryName } | Select-Object -First 1
+    if ($LongPatch.enabled -and $null -ne $longRule) {
+      $longChanged = Apply-LongCampaignRewrite -Document $doc -Rule $longRule -EnglishBank $englishBank -LocalizedBank $localizedBank
+      $report.files += [ordered]@{
+        kind = "long_campaign"
+        pak = $pakName
+        entry = $entryName
+        rowsChanged = $longChanged
       }
+    }
 
-      $cells = $row.SelectNodes("Cell")
-      $cells.Item(1).InnerText = [string]$override.english
-      $cells.Item(2).InnerText = [string]$override.localized
+    $explicitSet = $entrySets | Where-Object { [string]$_.entry -eq $entryName } | Select-Object -First 1
+    if ($null -ne $explicitSet) {
+      foreach ($override in @($explicitSet.rows)) {
+        $rowId = [string]$override.id
+        $row = $doc.Table.Row | Where-Object { $_.Cell[0] -eq $rowId } | Select-Object -First 1
+        if ($null -eq $row) {
+          throw "Row '$rowId' not found in $pakName/$entryName"
+        }
+
+        $cells = $row.SelectNodes("Cell")
+        $cells.Item(1).InnerText = [string]$override.english
+        $cells.Item(2).InnerText = [string]$override.localized
+      }
     }
 
     $xmlOut = Join-Path $languageTemp $entryName
     Save-XmlWithoutDeclaration -Document $doc -Path $xmlOut
 
-    $report.files += [ordered]@{
-      kind = "localization"
-      pak = $pakName
-      entry = $entryName
-      rowsChanged = @($entrySet.rows).Count
+    if ($null -ne $explicitSet) {
+      $report.files += [ordered]@{
+        kind = "localization"
+        pak = $pakName
+        entry = $entryName
+        rowsChanged = @($explicitSet.rows).Count
+      }
     }
   }
 
