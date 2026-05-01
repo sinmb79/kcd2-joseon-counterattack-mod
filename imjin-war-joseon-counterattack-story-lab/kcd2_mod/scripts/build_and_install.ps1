@@ -12,20 +12,29 @@ $ScriptRoot = Split-Path -Parent $PSCommandPath
 $ProjectRoot = Split-Path -Parent $ScriptRoot
 $RepoRoot = Split-Path -Parent $ProjectRoot
 $PatchPath = Join-Path $ProjectRoot "patches\localization_overrides.json"
+$GameplayPatchPath = Join-Path $ProjectRoot "patches\gameplay_overrides.json"
 $TemplateManifest = Join-Path $ProjectRoot "templates\mod.manifest"
 $Patch = Get-Content -Raw -Encoding UTF8 -LiteralPath $PatchPath | ConvertFrom-Json
+$GameplayPatch = Get-Content -Raw -Encoding UTF8 -LiteralPath $GameplayPatchPath | ConvertFrom-Json
 $ModId = [string]$Patch.modId
 
 if ($ModId -notmatch '^[a-z_]+$') {
   throw "modId must contain lowercase letters and underscores only: $ModId"
 }
 
+if ([string]$GameplayPatch.modId -ne $ModId) {
+  throw "Gameplay patch modId does not match localization modId."
+}
+
 $LocalizationRoot = Join-Path $GameRoot "Localization"
+$DataRoot = Join-Path $GameRoot "Data"
 $ModsRoot = Join-Path $GameRoot "Mods"
 $BuildRoot = Join-Path $ProjectRoot "build\$ModId"
 $BuildLocalization = Join-Path $BuildRoot "Localization"
+$BuildData = Join-Path $BuildRoot "Data"
 $InstallRoot = Join-Path $ModsRoot $ModId
 $InstallLocalization = Join-Path $InstallRoot "Localization"
+$InstallData = Join-Path $InstallRoot "Data"
 
 function Get-ZipEntryText {
   param(
@@ -99,6 +108,37 @@ function New-PakFromFile {
   }
 }
 
+function New-PakFromDirectory {
+  param(
+    [string]$SourceDirectory,
+    [string]$PakFile
+  )
+
+  if (Test-Path -LiteralPath $PakFile) {
+    Remove-Item -LiteralPath $PakFile -Force
+  }
+
+  $sourceRoot = (Resolve-Path -LiteralPath $SourceDirectory).Path.TrimEnd('\')
+  $targetPak = [System.IO.Path]::GetFullPath($PakFile)
+  $archive = [System.IO.Compression.ZipFile]::Open($PakFile, [System.IO.Compression.ZipArchiveMode]::Create)
+  try {
+    Get-ChildItem -File -Recurse -LiteralPath $sourceRoot | ForEach-Object {
+      if ([System.IO.Path]::GetFullPath($_.FullName) -eq $targetPak) {
+        return
+      }
+      $relative = $_.FullName.Substring($sourceRoot.Length).TrimStart('\') -replace '\\', '/'
+      [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile(
+        $archive,
+        $_.FullName,
+        $relative,
+        [System.IO.Compression.CompressionLevel]::NoCompression
+      ) | Out-Null
+    }
+  } finally {
+    $archive.Dispose()
+  }
+}
+
 if (-not (Test-Path -LiteralPath $GameRoot)) {
   throw "KCD2 game root not found: $GameRoot"
 }
@@ -107,7 +147,16 @@ if (-not (Test-Path -LiteralPath $LocalizationRoot)) {
   throw "KCD2 Localization folder not found: $LocalizationRoot"
 }
 
+if (-not (Test-Path -LiteralPath $DataRoot)) {
+  throw "KCD2 Data folder not found: $DataRoot"
+}
+
+if (Test-Path -LiteralPath $BuildRoot) {
+  Remove-Item -LiteralPath $BuildRoot -Recurse -Force
+}
+
 New-Item -ItemType Directory -Force -Path $BuildLocalization | Out-Null
+New-Item -ItemType Directory -Force -Path $BuildData | Out-Null
 Copy-Item -LiteralPath $TemplateManifest -Destination (Join-Path $BuildRoot "mod.manifest") -Force
 
 $report = [ordered]@{
@@ -119,39 +168,101 @@ $report = [ordered]@{
 
 foreach ($language in $Patch.languages) {
   $pakName = [string]$language.pak
-  $entryName = [string]$Patch.entry
   $sourcePak = Join-Path $LocalizationRoot $pakName
   if (-not (Test-Path -LiteralPath $sourcePak)) {
     throw "Source localization pak not found: $sourcePak"
   }
 
-  [xml]$doc = Get-ZipEntryText -PakPath $sourcePak -EntryName $entryName
+  $languageTemp = Join-Path $BuildRoot ("_localization_temp\" + [System.IO.Path]::GetFileNameWithoutExtension($pakName))
+  New-Item -ItemType Directory -Force -Path $languageTemp | Out-Null
 
-  foreach ($override in $language.rows) {
-    $rowId = [string]$override.id
-    $row = $doc.Table.Row | Where-Object { $_.Cell[0] -eq $rowId } | Select-Object -First 1
-    if ($null -eq $row) {
-      throw "Row '$rowId' not found in $pakName/$entryName"
+  $entrySets = @()
+  if ($null -ne $language.entries) {
+    $entrySets = @($language.entries)
+  } else {
+    $entrySets = @([pscustomobject]@{
+      entry = [string]$Patch.entry
+      rows = $language.rows
+    })
+  }
+
+  foreach ($entrySet in $entrySets) {
+    $entryName = [string]$entrySet.entry
+    [xml]$doc = Get-ZipEntryText -PakPath $sourcePak -EntryName $entryName
+
+    foreach ($override in $entrySet.rows) {
+      $rowId = [string]$override.id
+      $row = $doc.Table.Row | Where-Object { $_.Cell[0] -eq $rowId } | Select-Object -First 1
+      if ($null -eq $row) {
+        throw "Row '$rowId' not found in $pakName/$entryName"
+      }
+
+      $cells = $row.SelectNodes("Cell")
+      $cells.Item(1).InnerText = [string]$override.english
+      $cells.Item(2).InnerText = [string]$override.localized
     }
 
-    $cells = $row.SelectNodes("Cell")
-    $cells.Item(1).InnerText = [string]$override.english
-    $cells.Item(2).InnerText = [string]$override.localized
-  }
+    $xmlOut = Join-Path $languageTemp $entryName
+    Save-XmlWithoutDeclaration -Document $doc -Path $xmlOut
 
-  $xmlOut = Join-Path $BuildLocalization $entryName
-  Save-XmlWithoutDeclaration -Document $doc -Path $xmlOut
+    $report.files += [ordered]@{
+      kind = "localization"
+      pak = $pakName
+      entry = $entryName
+      rowsChanged = @($entrySet.rows).Count
+    }
+  }
 
   $pakOut = Join-Path $BuildLocalization $pakName
-  New-PakFromFile -SourceFile $xmlOut -PakFile $pakOut -EntryName $entryName
-  Remove-Item -LiteralPath $xmlOut -Force
+  New-PakFromDirectory -SourceDirectory $languageTemp -PakFile $pakOut
 
-  $report.files += [ordered]@{
-    pak = $pakName
-    entry = $entryName
-    rowsChanged = @($language.rows).Count
-    output = $pakOut
+  Remove-Item -LiteralPath $languageTemp -Recurse -Force
+}
+
+$tablesPak = Join-Path $DataRoot ([string]$GameplayPatch.sourcePak)
+if (-not (Test-Path -LiteralPath $tablesPak)) {
+  throw "Source table pak not found: $tablesPak"
+}
+
+[xml]$sourceRpg = Get-ZipEntryText -PakPath $tablesPak -EntryName ([string]$GameplayPatch.tableEntry)
+[xml]$patchedRpg = '<?xml version="1.0" encoding="us-ascii"?><database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="barbora" xsi:noNamespaceSchemaLocation="../database.xsd"><rpg_params version="1"></rpg_params></database>'
+
+foreach ($param in $GameplayPatch.rpgParams) {
+  $key = [string]$param.key
+  $sourceRow = $sourceRpg.database.rpg_params.rpg_param | Where-Object { $_.rpg_param_key -eq $key } | Select-Object -First 1
+  if ($null -eq $sourceRow) {
+    throw "RPG param '$key' not found in $($GameplayPatch.tableEntry)."
   }
+
+  $patchedRow = $patchedRpg.ImportNode($sourceRow, $true)
+  $patchedRow.SetAttribute("rpg_param_value", [string]$param.value)
+  $patchedRpg.database.rpg_params.AppendChild($patchedRow) | Out-Null
+}
+
+$patchedEntry = [string]$GameplayPatch.patchedEntry
+$patchedFile = Join-Path $BuildData ($patchedEntry -replace '/', '\')
+New-Item -ItemType Directory -Force -Path (Split-Path -Parent $patchedFile) | Out-Null
+$settings = [System.Xml.XmlWriterSettings]::new()
+$settings.Encoding = [System.Text.ASCIIEncoding]::new()
+$settings.OmitXmlDeclaration = $false
+$settings.Indent = $true
+$writer = [System.Xml.XmlWriter]::Create($patchedFile, $settings)
+try {
+  $patchedRpg.Save($writer)
+} finally {
+  $writer.Dispose()
+}
+
+$dataPakOut = Join-Path $BuildData "$ModId.pak"
+New-PakFromDirectory -SourceDirectory $BuildData -PakFile $dataPakOut
+Remove-Item -LiteralPath (Join-Path $BuildData "Libs") -Recurse -Force
+
+$report.files += [ordered]@{
+  kind = "gameplay"
+  pak = "$ModId.pak"
+  entry = $patchedEntry
+  rowsChanged = @($GameplayPatch.rpgParams).Count
+  output = $dataPakOut
 }
 
 $reportPath = Join-Path $BuildRoot "build-report.json"
@@ -159,13 +270,17 @@ $report | ConvertTo-Json -Depth 8 | Set-Content -Encoding UTF8 -LiteralPath $rep
 
 if (-not $NoInstall) {
   New-Item -ItemType Directory -Force -Path $InstallLocalization | Out-Null
+  New-Item -ItemType Directory -Force -Path $InstallData | Out-Null
   Copy-Item -LiteralPath (Join-Path $BuildRoot "mod.manifest") -Destination (Join-Path $InstallRoot "mod.manifest") -Force
   Get-ChildItem -File -LiteralPath $BuildLocalization -Filter "*.pak" |
     Copy-Item -Destination $InstallLocalization -Force
+  Get-ChildItem -File -LiteralPath $BuildData -Filter "*.pak" |
+    Copy-Item -Destination $InstallData -Force
 
   $summary = @(
     "Joseon Counterattack Early Front installed.",
     "Generated: $($report.generatedAt)",
+    "Localization and gameplay table patches are installed.",
     "Original KCD2 Data and Localization folders were not modified.",
     "Mod root: $InstallRoot"
   )

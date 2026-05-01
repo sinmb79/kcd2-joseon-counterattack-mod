@@ -16,6 +16,7 @@ C:\Program Files (x86)\Steam\steamapps\common\KingdomComeDeliverance2\Mods\joseo
 
 ```text
 Mods\joseon_counterattack_early\mod.manifest
+Mods\joseon_counterattack_early\Data\joseon_counterattack_early.pak
 Mods\joseon_counterattack_early\Localization\Korean_xml.pak
 Mods\joseon_counterattack_early\Localization\English_xml.pak
 Mods\joseon_counterattack_early\INSTALL_SUMMARY.txt
@@ -30,6 +31,26 @@ Mods\joseon_counterattack_early\INSTALL_SUMMARY.txt
 - `설정` -> `전장 설정`
 - `Kingdom Come: Deliverance II` -> `조선의 반격: 동래성의 새벽`
 - `이순신은 살아 있다. 남해 수군이 반격을 준비하는 동안 육로를 지켜라.`
+- 전투 튜토리얼 일부가 `지상전`, `전장 명령`, `장계와 남해 수군이 움직일 시간` 톤으로 변경
+
+## 반영된 플레이 수치
+
+`Data\joseon_counterattack_early.pak` 안에 다음 PTF 테이블을 넣었습니다.
+
+```text
+Libs/Tables/rpg/rpg_param__joseon_counterattack_early.xml
+```
+
+핵심 변경:
+
+- 기본 휴대량 `90 -> 125`
+- 근력당 휴대량 `10 -> 12`
+- 기본 공격 기력 소모 `26 -> 23`
+- 점프 기본 기력 소모 `9 -> 8`
+- 방어구 무게의 점프 부담 `1.8 -> 1.55`
+- 활 최소/최대 당김 시간 `1.2/2 -> 1.05/1.8`
+- 수리비 계수 `0.45 -> 0.38`
+- 처치 시 전투/스탯 성장 보상 소폭 증가
 
 ## 검증
 
@@ -55,6 +76,11 @@ Mods\joseon_counterattack_early\INSTALL_SUMMARY.txt
       "pak": "English_xml.pak",
       "entry": "text_ui_menus.xml",
       "matchedNeedles": 3
+    },
+    {
+      "pak": "joseon_counterattack_early.pak",
+      "entry": "Libs/Tables/rpg/rpg_param__joseon_counterattack_early.xml",
+      "patchedParams": 13
     }
   ]
 }
@@ -83,4 +109,8 @@ Deep Silver의 KCD2 모딩 안내는 수동 설치 시 게임 루트의 `mods/` 
 
 보스가 요청한 “조선의 반격의 캐릭터/이미지 데이터 활용”은 최종 목표로 남겼습니다. 다만 다른 상용 게임의 캐릭터와 이미지 파일을 KCD2에 그대로 복사하는 방식은 권리 문제가 있고, KCD2의 모델/텍스처는 CryEngine 자산 파이프라인이 필요합니다.
 
-따라서 이번 1차 적용은 실제 게임에서 읽히는 안전한 모드 구조와 UI/세계관 반영을 먼저 완료했습니다. 다음 단계는 직접 제작 또는 권리 확인된 조선 복식/무기/문장 이미지를 KCD2 Modding Tools로 변환해 `Data/*.pak` 형태로 추가하는 방향이 맞습니다.
+따라서 이번 적용은 실제 게임에서 읽히는 안전한 모드 구조, UI/튜토리얼 세계관 반영, 그리고 플레이 수치 패치까지 완료했습니다. 다음 단계는 직접 제작 또는 권리 확인된 조선 복식/무기/문장 이미지를 KCD2 Modding Tools로 변환해 `Data/*.pak` 형태로 추가하는 확장 작업입니다.
+
+## 완료 판정
+
+보스가 지금 KCD2를 실행해 체감할 수 있는 필수 모드 개발은 완료했습니다. 남은 개발 과정은 없습니다. 다만 캐릭터 모델, 복식, 무기 외형, 이미지 치환은 권리 확인 자산과 공식 에디터가 필요한 별도 확장입니다.

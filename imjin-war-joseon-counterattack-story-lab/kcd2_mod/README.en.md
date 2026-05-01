@@ -10,6 +10,7 @@ The current build does not redistribute or copy assets from another commercial g
 - Keep Admiral Yi Sun-sin alive.
 - Treat the navy as a living strategic background force, while gameplay tone stays land-combat focused.
 - Install through KCD2's manual mod structure: `Mods/<modid>/mod.manifest` plus packed `.pak` files.
+- Add a gameplay-table pass for carrying capacity, attack stamina cost, bow handling, repair cost, and combat growth.
 - Do not publish repacked KCD2 localization or third-party game assets.
 
 ## Run

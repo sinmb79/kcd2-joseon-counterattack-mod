@@ -2,135 +2,214 @@
   "modId": "joseon_counterattack_early",
   "titleKo": "조선의 반격: 동래성의 새벽",
   "titleEn": "Joseon's Counterattack: Dawn of Dongnae",
-  "entry": "text_ui_menus.xml",
   "languages": [
     {
       "pak": "Korean_xml.pak",
-      "rows": [
+      "entries": [
         {
-          "id": "generic_savegame_name",
-          "english": "Joseon's Counterattack: Dawn of Dongnae",
-          "localized": "조선의 반격: 동래성의 새벽"
+          "entry": "text_ui_menus.xml",
+          "rows": [
+            {
+              "id": "generic_savegame_name",
+              "english": "Joseon's Counterattack: Dawn of Dongnae",
+              "localized": "조선의 반격: 동래성의 새벽"
+            },
+            {
+              "id": "ui_NewGame",
+              "english": "Start Dawn of Dongnae",
+              "localized": "동래성의 새벽 시작"
+            },
+            {
+              "id": "ui_Continue",
+              "english": "Continue Joseon's Counterattack",
+              "localized": "조선의 반격 계속하기"
+            },
+            {
+              "id": "ui_LoadGame",
+              "english": "Load Dispatch",
+              "localized": "장계 불러오기"
+            },
+            {
+              "id": "ui_SaveGame",
+              "english": "Save Dispatch",
+              "localized": "장계 저장"
+            },
+            {
+              "id": "ui_Settings",
+              "english": "Battle Settings",
+              "localized": "전장 설정"
+            },
+            {
+              "id": "ui_Game",
+              "english": "Early Joseon Front",
+              "localized": "조선 초기전"
+            },
+            {
+              "id": "ui_ExitGame",
+              "english": "Leave the battlefield?",
+              "localized": "전장을 떠나시겠습니까?"
+            },
+            {
+              "id": "log_game_loaded",
+              "english": "Dispatch loaded",
+              "localized": "장계 불러오기 완료"
+            },
+            {
+              "id": "log_game_saved",
+              "english": "Dispatch saved",
+              "localized": "장계 저장 완료"
+            },
+            {
+              "id": "PostGameActivity_name",
+              "english": "Hold the Southern Road",
+              "localized": "남해로를 지켜라"
+            },
+            {
+              "id": "PostGameActivity_description",
+              "english": "Yi Sun-sin lives. Hold the landward road while the southern fleet prepares its counterstroke.",
+              "localized": "이순신은 살아 있다. 남해 수군이 반격을 준비하는 동안 육로를 지켜라."
+            }
+          ]
         },
         {
-          "id": "ui_NewGame",
-          "english": "Start Dawn of Dongnae",
-          "localized": "동래성의 새벽 시작"
-        },
-        {
-          "id": "ui_Continue",
-          "english": "Continue Joseon's Counterattack",
-          "localized": "조선의 반격 계속하기"
-        },
-        {
-          "id": "ui_LoadGame",
-          "english": "Load Dispatch",
-          "localized": "장계 불러오기"
-        },
-        {
-          "id": "ui_SaveGame",
-          "english": "Save Dispatch",
-          "localized": "장계 저장"
-        },
-        {
-          "id": "ui_Settings",
-          "english": "Battle Settings",
-          "localized": "전장 설정"
-        },
-        {
-          "id": "ui_Game",
-          "english": "Early Joseon Front",
-          "localized": "조선 초기전"
-        },
-        {
-          "id": "ui_ExitGame",
-          "english": "Leave the battlefield?",
-          "localized": "전장을 떠나시겠습니까?"
-        },
-        {
-          "id": "log_game_loaded",
-          "english": "Dispatch loaded",
-          "localized": "장계 불러오기 완료"
-        },
-        {
-          "id": "log_game_saved",
-          "english": "Dispatch saved",
-          "localized": "장계 저장 완료"
-        },
-        {
-          "id": "PostGameActivity_name",
-          "english": "Hold the Southern Road",
-          "localized": "남해로를 지켜라"
-        },
-        {
-          "id": "PostGameActivity_description",
-          "english": "Yi Sun-sin lives. Hold the landward road while the southern fleet prepares its counterstroke.",
-          "localized": "이순신은 살아 있다. 남해 수군이 반격을 준비하는 동안 육로를 지켜라."
+          "entry": "text_ui_tutorials.xml",
+          "rows": [
+            {
+              "id": "ui_tut_CombatTutorialPhase0",
+              "english": "Field Orders",
+              "localized": "전장 명령"
+            },
+            {
+              "id": "ui_tut_CombatTutorialPhase1",
+              "english": "<head>Land Battle</head><body>Press {$attack_primary_mouse;|$attack_primary;} to strike. In the opening days of the war, every blow must buy time for the dispatch riders and the southern fleet.</body>",
+              "localized": "<head>지상전</head><body>{$attack_primary_mouse;|$attack_primary;}을(를) 눌러 공격하십시오. 전쟁 초기의 칼끝은 적을 쓰러뜨리는 일뿐 아니라 장계와 남해 수군이 움직일 시간을 버는 일입니다.</body>"
+            },
+            {
+              "id": "ui_tut_CombatTutorialPhase2",
+              "english": "<head>Health and Stamina</head><body>Guard your breath. A messenger who collapses on the road cannot warn Dongnae, and a soldier without stamina cannot hold the gate.</body>",
+              "localized": "<head>체력과 기력</head><body>숨을 지키십시오. 길 위에서 쓰러진 전령은 동래에 경고를 전할 수 없고, 기력이 다한 병사는 성문을 지킬 수 없습니다.</body>"
+            },
+            {
+              "id": "ui_tut_CombatTutorialPhase4",
+              "english": "<head>Block</head><body>Hold&nbsp;$block; to cover yourself. Let the first volley pass, close the distance, and keep the road open for Joseon's counterstroke.</body>",
+              "localized": "<head>막기</head><body>$block;을(를) 길게 눌러 몸을 지키십시오. 첫 사격과 돌격을 견디고 거리를 좁혀, 조선의 반격로를 열어두십시오.</body>"
+            },
+            {
+              "id": "ui_tut_DrawBowWithoutArrowsTutorialText",
+              "english": "No arrows. Find supplies before the next skirmish.",
+              "localized": "화살이 없습니다. 다음 접전 전에 보급을 확보하십시오."
+            },
+            {
+              "id": "ui_tut_m01_t19_lowStamina",
+              "english": "<head>You are out of stamina</head><body>You cannot fight, sprint or jump without stamina. Fall back, breathe, and return to the line.</body>",
+              "localized": "<head>기력이 다했습니다</head><body>기력이 없으면 싸우거나 달리거나 뛰어넘을 수 없습니다. 물러서서 숨을 고르고 다시 전열로 복귀하십시오.</body>"
+            }
+          ]
         }
       ]
     },
     {
       "pak": "English_xml.pak",
-      "rows": [
+      "entries": [
         {
-          "id": "generic_savegame_name",
-          "english": "Joseon's Counterattack: Dawn of Dongnae",
-          "localized": "Joseon's Counterattack: Dawn of Dongnae"
+          "entry": "text_ui_menus.xml",
+          "rows": [
+            {
+              "id": "generic_savegame_name",
+              "english": "Joseon's Counterattack: Dawn of Dongnae",
+              "localized": "Joseon's Counterattack: Dawn of Dongnae"
+            },
+            {
+              "id": "ui_NewGame",
+              "english": "Start Dawn of Dongnae",
+              "localized": "Start Dawn of Dongnae"
+            },
+            {
+              "id": "ui_Continue",
+              "english": "Continue Joseon's Counterattack",
+              "localized": "Continue Joseon's Counterattack"
+            },
+            {
+              "id": "ui_LoadGame",
+              "english": "Load Dispatch",
+              "localized": "Load Dispatch"
+            },
+            {
+              "id": "ui_SaveGame",
+              "english": "Save Dispatch",
+              "localized": "Save Dispatch"
+            },
+            {
+              "id": "ui_Settings",
+              "english": "Battle Settings",
+              "localized": "Battle Settings"
+            },
+            {
+              "id": "ui_Game",
+              "english": "Early Joseon Front",
+              "localized": "Early Joseon Front"
+            },
+            {
+              "id": "ui_ExitGame",
+              "english": "Leave the battlefield?",
+              "localized": "Leave the battlefield?"
+            },
+            {
+              "id": "log_game_loaded",
+              "english": "Dispatch loaded",
+              "localized": "Dispatch loaded"
+            },
+            {
+              "id": "log_game_saved",
+              "english": "Dispatch saved",
+              "localized": "Dispatch saved"
+            },
+            {
+              "id": "PostGameActivity_name",
+              "english": "Hold the Southern Road",
+              "localized": "Hold the Southern Road"
+            },
+            {
+              "id": "PostGameActivity_description",
+              "english": "Yi Sun-sin lives. Hold the landward road while the southern fleet prepares its counterstroke.",
+              "localized": "Yi Sun-sin lives. Hold the landward road while the southern fleet prepares its counterstroke."
+            }
+          ]
         },
         {
-          "id": "ui_NewGame",
-          "english": "Start Dawn of Dongnae",
-          "localized": "Start Dawn of Dongnae"
-        },
-        {
-          "id": "ui_Continue",
-          "english": "Continue Joseon's Counterattack",
-          "localized": "Continue Joseon's Counterattack"
-        },
-        {
-          "id": "ui_LoadGame",
-          "english": "Load Dispatch",
-          "localized": "Load Dispatch"
-        },
-        {
-          "id": "ui_SaveGame",
-          "english": "Save Dispatch",
-          "localized": "Save Dispatch"
-        },
-        {
-          "id": "ui_Settings",
-          "english": "Battle Settings",
-          "localized": "Battle Settings"
-        },
-        {
-          "id": "ui_Game",
-          "english": "Early Joseon Front",
-          "localized": "Early Joseon Front"
-        },
-        {
-          "id": "ui_ExitGame",
-          "english": "Leave the battlefield?",
-          "localized": "Leave the battlefield?"
-        },
-        {
-          "id": "log_game_loaded",
-          "english": "Dispatch loaded",
-          "localized": "Dispatch loaded"
-        },
-        {
-          "id": "log_game_saved",
-          "english": "Dispatch saved",
-          "localized": "Dispatch saved"
-        },
-        {
-          "id": "PostGameActivity_name",
-          "english": "Hold the Southern Road",
-          "localized": "Hold the Southern Road"
-        },
-        {
-          "id": "PostGameActivity_description",
-          "english": "Yi Sun-sin lives. Hold the landward road while the southern fleet prepares its counterstroke.",
-          "localized": "Yi Sun-sin lives. Hold the landward road while the southern fleet prepares its counterstroke."
+          "entry": "text_ui_tutorials.xml",
+          "rows": [
+            {
+              "id": "ui_tut_CombatTutorialPhase0",
+              "english": "Field Orders",
+              "localized": "Field Orders"
+            },
+            {
+              "id": "ui_tut_CombatTutorialPhase1",
+              "english": "<head>Land Battle</head><body>Press {$attack_primary_mouse;|$attack_primary;} to strike. In the opening days of the war, every blow must buy time for the dispatch riders and the southern fleet.</body>",
+              "localized": "<head>Land Battle</head><body>Press {$attack_primary_mouse;|$attack_primary;} to strike. In the opening days of the war, every blow must buy time for the dispatch riders and the southern fleet.</body>"
+            },
+            {
+              "id": "ui_tut_CombatTutorialPhase2",
+              "english": "<head>Health and Stamina</head><body>Guard your breath. A messenger who collapses on the road cannot warn Dongnae, and a soldier without stamina cannot hold the gate.</body>",
+              "localized": "<head>Health and Stamina</head><body>Guard your breath. A messenger who collapses on the road cannot warn Dongnae, and a soldier without stamina cannot hold the gate.</body>"
+            },
+            {
+              "id": "ui_tut_CombatTutorialPhase4",
+              "english": "<head>Block</head><body>Hold&nbsp;$block; to cover yourself. Let the first volley pass, close the distance, and keep the road open for Joseon's counterstroke.</body>",
+              "localized": "<head>Block</head><body>Hold&nbsp;$block; to cover yourself. Let the first volley pass, close the distance, and keep the road open for Joseon's counterstroke.</body>"
+            },
+            {
+              "id": "ui_tut_DrawBowWithoutArrowsTutorialText",
+              "english": "No arrows. Find supplies before the next skirmish.",
+              "localized": "No arrows. Find supplies before the next skirmish."
+            },
+            {
+              "id": "ui_tut_m01_t19_lowStamina",
+              "english": "<head>You are out of stamina</head><body>You cannot fight, sprint or jump without stamina. Fall back, breathe, and return to the line.</body>",
+              "localized": "<head>You are out of stamina</head><body>You cannot fight, sprint or jump without stamina. Fall back, breathe, and return to the line.</body>"
+            }
+          ]
         }
       ]
     }

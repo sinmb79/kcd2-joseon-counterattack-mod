@@ -11,6 +11,7 @@
 - 시작 시점: 1592년 전쟁 초, 부산진과 동래성 압박 직후의 육상 방어전
 - 핵심 인물 원칙: 이순신 장군 생존, 수군은 배경 전략축, 플레이 감각은 지상전
 - 게임 적용 방식: KCD2 공식 수동 모드 구조인 `Mods/<modid>/mod.manifest`와 `Localization/*.pak`
+- 플레이 수치: 전령/보급병 플레이를 위해 휴대량, 공격 기력 소모, 활 조작, 수리비, 성장 보상 조정
 - 저작권 경계: 다른 게임의 이미지/캐릭터 파일을 직접 복사하지 않고, 보스의 로컬 설치본에서만 패키지를 생성
 
 ## 구조
@@ -18,6 +19,7 @@
 ```text
 kcd2_mod/
   patches/localization_overrides.json   바꿀 UI 문구 목록
+  patches/gameplay_overrides.json       전투/보급/이동 수치 패치 목록
   scripts/build_and_install.ps1         KCD2 Mods 폴더에 모드 생성/설치
   scripts/verify_install.ps1            설치된 모드 pak 검증
   scenario/early_campaign.md            초기 시나리오 설계
@@ -49,4 +51,4 @@ C:\Program Files (x86)\Steam\steamapps\common\KingdomComeDeliverance2
 
 ## 현재 단계의 한계
 
-이번 적용은 실제 KCD2 설치 폴더에 들어가는 플레이 가능 모드이지만, 캐릭터 모델과 이미지 교체까지 무리하게 덮어쓰지는 않았습니다. 그 작업은 KCD2 공식 Modding Tools, CryEngine 자산 변환, 그리고 권리 문제가 확인된 원본/직접 제작 자산이 필요합니다. 현재 단계는 게임을 망가뜨리지 않고 즉시 확인 가능한 UI/세계관 반영을 먼저 넣는 안전한 1차 적용입니다.
+이번 적용은 실제 KCD2 설치 폴더에 들어가는 플레이 가능 모드입니다. 다만 캐릭터 모델과 이미지 교체까지 무리하게 덮어쓰지는 않았습니다. 그 작업은 KCD2 공식 Modding Tools, CryEngine 자산 변환, 그리고 권리 문제가 확인된 원본/직접 제작 자산이 필요합니다. 현재 단계에서 안전하게 완료 가능한 필수 개발은 끝났고, 모델/복식/무기 비주얼은 후속 확장 영역입니다.

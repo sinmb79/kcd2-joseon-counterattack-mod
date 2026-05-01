@@ -1,0 +1,74 @@
+{
+  "modId": "joseon_counterattack_early",
+  "sourcePak": "Tables.pak",
+  "tableEntry": "Libs/Tables/rpg/rpg_param.xml",
+  "patchedEntry": "Libs/Tables/rpg/rpg_param__joseon_counterattack_early.xml",
+  "description": "Warfront balance pass for a playable early-Imjin land-front roleplay layer.",
+  "rpgParams": [
+    {
+      "key": "BaseInventoryCapacity",
+      "value": "125",
+      "reason": "전령/보급병 플레이가 가능하도록 기본 휴대량을 약간 늘립니다."
+    },
+    {
+      "key": "StrengthToInventoryCapacity",
+      "value": "12",
+      "reason": "근력 성장 시 보급 휴대 체감이 나도록 합니다."
+    },
+    {
+      "key": "BaseAttackStaminaCost",
+      "value": "23",
+      "reason": "초기 지상전에서 연속 교전이 지나치게 답답하지 않게 합니다."
+    },
+    {
+      "key": "JumpCostBase",
+      "value": "8",
+      "reason": "성문과 산길을 오가는 연락병 기동성을 조금 개선합니다."
+    },
+    {
+      "key": "ArmorLoadToJumpCost",
+      "value": "1.55",
+      "reason": "방어구를 입고도 최소한의 전장 이동이 가능하게 합니다."
+    },
+    {
+      "key": "BowChargeDurationMin",
+      "value": "1.05",
+      "reason": "궁시 운용을 조금 빠르게 만들어 조선 방어전 분위기를 살립니다."
+    },
+    {
+      "key": "BowChargeDurationMax",
+      "value": "1.8",
+      "reason": "활 조준의 답답함을 줄입니다."
+    },
+    {
+      "key": "BowPowerToChargeDuration",
+      "value": "0.045",
+      "reason": "활 위력에 따른 장전 부담을 소폭 낮춥니다."
+    },
+    {
+      "key": "RangedWpnSpeedToAttack",
+      "value": "0.024",
+      "reason": "원거리 무기의 공격 속도 체감을 조금 높입니다."
+    },
+    {
+      "key": "SkillXPKill",
+      "value": "20",
+      "reason": "전쟁 초기 실전 경험의 성장 체감을 약간 높입니다."
+    },
+    {
+      "key": "StatXPKill",
+      "value": "14",
+      "reason": "지상전 생존 성장 속도를 조금 높입니다."
+    },
+    {
+      "key": "AthleticXPAwardDistance",
+      "value": "170",
+      "reason": "전령 이동 플레이가 성장으로 이어지게 합니다."
+    },
+    {
+      "key": "RepairPriceModif",
+      "value": "0.38",
+      "reason": "전시 장비 수리 부담을 낮춰 장기 플레이를 돕습니다."
+    }
+  ]
+}
