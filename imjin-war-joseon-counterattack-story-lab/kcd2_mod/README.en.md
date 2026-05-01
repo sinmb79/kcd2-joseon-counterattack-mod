@@ -26,6 +26,30 @@ cd "C:\Users\sinmb\Documents\New project 2\imjin-war-joseon-counterattack-story-
 .\kcd2_mod\scripts\verify_install.ps1
 ```
 
+## ImjinWar Asset Bridge
+
+The installed `Imjin War: Joseon Counterattack` client was found here:
+
+```text
+C:\Program Files (x86)\Joycity\ImjinWar
+```
+
+The private bridge extracts selected Unity Texture2D/TextAsset data into a git-ignored local folder and creates a local-only KCD2 UI PAK:
+
+```powershell
+.\kcd2_mod\scripts\build_private_imjinwar_bridge.ps1
+.\kcd2_mod\scripts\verify_private_imjinwar_bridge.ps1
+```
+
+Generated local outputs:
+
+```text
+assets\game-captures-private\imjinwar_extract\
+C:\Program Files (x86)\Steam\steamapps\common\KingdomComeDeliverance2\Mods\joseon_counterattack_early\Data\joseon_counterattack_private_ui.pak
+```
+
+These files are for local play only and are not committed to the public repository.
+
 ## Official Editor
 
 The official KCD2 modding tools are installed here:
@@ -56,4 +80,6 @@ flowchart TD
   B --> E["KCD2 Mods folder"]
   F["setup_editor_workspace.ps1"] --> G["KCD2Mod editor workspace"]
   G --> H["WARHORSE Sandbox Editor"]
+  I["Installed ImjinWar client"] --> J["build_private_imjinwar_bridge.ps1"]
+  J --> E
 ```

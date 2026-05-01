@@ -38,6 +38,30 @@ cd "C:\Users\sinmb\Documents\New project 2\imjin-war-joseon-counterattack-story-
 - `text_ui_soul.xml`
 - `Libs/Tables/rpg/rpg_param__joseon_counterattack_early.xml`
 
+## 조선의 반격 이미지 브리지
+
+보스 PC에는 `임진왜란 조선의 반격`이 다음 위치에 설치되어 있습니다.
+
+```text
+C:\Program Files (x86)\Joycity\ImjinWar
+```
+
+다음 스크립트는 그 설치본에서 Unity Texture2D/TextAsset을 로컬 전용 폴더로 추출하고, KCD2가 읽을 수 있는 private UI PAK를 모드 폴더에 생성합니다.
+
+```powershell
+.\kcd2_mod\scripts\build_private_imjinwar_bridge.ps1
+.\kcd2_mod\scripts\verify_private_imjinwar_bridge.ps1
+```
+
+생성 위치:
+
+```text
+assets\game-captures-private\imjinwar_extract\
+C:\Program Files (x86)\Steam\steamapps\common\KingdomComeDeliverance2\Mods\joseon_counterattack_early\Data\joseon_counterattack_private_ui.pak
+```
+
+이 파일들은 보스 PC에서 실제 플레이할 때만 쓰이며, 공개 저장소에는 올라가지 않습니다.
+
 ## 공식 에디터
 
 공식 모딩툴은 Steam 도구 앱으로 설치되어 있습니다.
@@ -72,4 +96,4 @@ flowchart TD
 
 ## 현재 한계
 
-이 버전은 플레이 가능한 로컬 모드 패키지와 에디터 환경을 완성한 단계입니다. 캐릭터 모델, 복식, 무기 외형, UI 아이콘 전체 교체는 공식 에디터와 별도 자산 파이프라인에서 계속 확장할 수 있습니다. 공개 저장소에는 상용 게임 자산을 포함하지 않습니다.
+이 버전은 플레이 가능한 로컬 모드 패키지, 에디터 환경, 그리고 조선의 반격 로컬 이미지 브리지를 완성한 단계입니다. 캐릭터 모델, 복식, 무기 외형 전체 교체는 공식 에디터와 별도 자산 파이프라인에서 계속 확장할 수 있습니다. 공개 저장소에는 상용 게임 자산을 포함하지 않습니다.
