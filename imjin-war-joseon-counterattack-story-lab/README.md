@@ -35,6 +35,8 @@ cd "C:\Users\sinmb\Documents\New project 2\imjin-war-joseon-counterattack-story-
 - 지상전 중심 플레이를 위해 공격 스태미나, 휴대 중량, 활 조작, 수리비, 전투 성장 수치 패치
 - 이순신 장군 생존 원칙 반영
 - 전쟁 초반, 부산진과 동래성, 보급선, 봉수, 관군/의병 재편에 초점
+- 코덱스 271행, 아이템 5,267행, 캐릭터/특성 2,498행 심화 재작성
+- 플레이어 시작 장비를 `joseon_counterattack_courier` 복식 프리셋과 `joseon_counterattack_land_front_weapons` 무장 프리셋으로 구성
 - KCD2 공식 Modding Tools 설치 및 에디터 워크스페이스 복구
 - 관리자 설치 없이 쓸 수 있는 포터블 7-Zip 콘솔 도구 준비
 - 보스 PC에 설치된 `임진왜란 조선의 반격` Unity 자산을 로컬 전용으로 추출해 KCD2 UI 일부에 연결하는 private PAK 생성
@@ -56,6 +58,7 @@ imjin-war-joseon-counterattack-story-lab/
 flowchart LR
   A["KCD2 원본 설치"] --> B["build_and_install.ps1"]
   C["조선 반격 패치 데이터"] --> B
+  J["deep content patcher"] --> B
   B --> D["Mods/joseon_counterattack_early"]
   D --> E["KCD2 실행"]
   A --> F["setup_editor_workspace.ps1"]

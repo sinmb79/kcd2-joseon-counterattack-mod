@@ -26,6 +26,15 @@ cd "C:\Users\sinmb\Documents\New project 2\imjin-war-joseon-counterattack-story-
 .\kcd2_mod\scripts\verify_install.ps1
 ```
 
+## Deep Content Layer
+
+The build now runs `tools/kcd2_deep_content_patch.py` after the base localization/gameplay pass. It rewrites:
+
+- 271 codex rows around the early Imjin War, Busanjin/Dongnae, dispatches, beacons, militias, and the rule that Yi Sun-sin survives
+- 5,267 item rows into Joseon land-front names and descriptions such as `Dongnae Longsword`, `Beacon-Post Bow`, `Gate Guard Shield`, and `Powderproofing Formula`
+- 2,498 character/perk/buff rows into Joseon-front roles and traits
+- player starter inventory, clothing preset, and weapon preset for a courier/guard loadout
+
 ## ImjinWar Asset Bridge
 
 The installed `Imjin War: Joseon Counterattack` client was found here:
@@ -77,6 +86,7 @@ flowchart TD
   A["Localization patches"] --> B["build_and_install.ps1"]
   C["Long campaign rewrite"] --> B
   D["Gameplay table patch"] --> B
+  K["Deep content patcher"] --> B
   B --> E["KCD2 Mods folder"]
   F["setup_editor_workspace.ps1"] --> G["KCD2Mod editor workspace"]
   G --> H["WARHORSE Sandbox Editor"]

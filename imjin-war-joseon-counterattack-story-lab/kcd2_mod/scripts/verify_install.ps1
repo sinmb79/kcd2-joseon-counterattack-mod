@@ -21,6 +21,12 @@ $RequiredLocalizationPaks = @("Korean_xml.pak", "English_xml.pak")
 $RequiredEntries = @("text_ui_menus.xml", "text_ui_tutorials.xml", "text_ui_quest.xml", "text_ui_items.xml", "text_ui_soul.xml")
 $GameplayPak = Join-Path $Data "$ModId.pak"
 $GameplayEntry = [string]$GameplayPatch.patchedEntry
+$DeepDataEntries = @(
+  "Libs/Tables/item/InventoryPreset__player.xml",
+  "Libs/Tables/item/clothing_preset__joseon_counterattack_early.xml",
+  "Libs/Tables/item/weapon_preset__joseon_counterattack_early.xml",
+  "Libs/Storm/equipment/player.xml"
+)
 
 function Get-ZipEntryText {
   param(
@@ -54,7 +60,7 @@ function Get-ZipEntryText {
 $MenuNeedles = @(
   'Joseon''s Counterattack: Dawn of Dongnae',
   'Start Dawn of Dongnae',
-  'Yi Sun-sin lives'
+  'Dawn of Dongnae is not a story'
 )
 
 $TutorialNeedles = @(
@@ -71,14 +77,20 @@ $QuestNeedles = @(
 
 $ItemNeedles = @(
   'Dongnae Dispatch',
-  'Letter to the Southern Fleet',
-  'Wartime Bandage Roll'
+  'Gate Guard Spear',
+  'Powderproofing Formula'
 )
 
 $SoulNeedles = @(
   'Courier''s Breath',
   'Promise of the Southern Sea',
-  'Spark of Counterattack'
+  'Courier Han-gyeol'
+)
+
+$StarterNeedles = @(
+  'joseon_counterattack_courier',
+  'joseon_counterattack_land_front_weapons',
+  'bandage_classic'
 )
 
 $results = @()
@@ -121,6 +133,36 @@ foreach ($pak in $RequiredLocalizationPaks) {
 
 if (-not (Test-Path -LiteralPath $GameplayPak)) {
   throw "Missing gameplay pak: $GameplayPak"
+}
+
+foreach ($deepEntry in $DeepDataEntries) {
+  $deepText = Get-ZipEntryText -PakPath $GameplayPak -EntryName $deepEntry
+  if ($deepEntry -eq "Libs/Tables/item/InventoryPreset__player.xml") {
+    $matches = $StarterNeedles | Where-Object { $deepText.Contains($_) }
+    if (@($matches).Count -lt 3) {
+      throw "Expected Joseon starter inventory items were not found in $GameplayPak/$deepEntry"
+    }
+  } elseif ($deepEntry -eq "Libs/Tables/item/clothing_preset__joseon_counterattack_early.xml") {
+    $matches = @('01894921-14e0-4012-a3a6-5f1fcf01d2d2', '3694c855-086f-4ce4-b402-a97ecce944f9', '018c1614-ddbf-4d9b-a797-40330be86c1c') | Where-Object { $deepText.Contains($_) }
+    if (@($matches).Count -lt 3) {
+      throw "Expected Joseon clothing preset items were not found in $GameplayPak/$deepEntry"
+    }
+  } elseif ($deepEntry -eq "Libs/Tables/item/weapon_preset__joseon_counterattack_early.xml") {
+    $matches = @('059893ea-3aef-48b3-b1ce-7eb3391fa028', '0077dfa2-b9be-4ae3-ae59-2803ba49dfcb', '710e3706-8974-404b-b23a-6f51670ef1ed') | Where-Object { $deepText.Contains($_) }
+    if (@($matches).Count -lt 3) {
+      throw "Expected Joseon weapon preset items were not found in $GameplayPak/$deepEntry"
+    }
+  } else {
+    $matches = @()
+  }
+
+  $results += [pscustomobject]@{
+    kind = "deep_data"
+    pak = "$ModId.pak"
+    entry = $deepEntry
+    size = $deepText.Length
+    matchedNeedles = @($matches).Count
+  }
 }
 
 [xml]$gameplayDoc = Get-ZipEntryText -PakPath $GameplayPak -EntryName $GameplayEntry

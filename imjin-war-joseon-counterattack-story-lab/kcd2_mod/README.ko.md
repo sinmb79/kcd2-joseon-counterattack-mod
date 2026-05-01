@@ -36,7 +36,17 @@ cd "C:\Users\sinmb\Documents\New project 2\imjin-war-joseon-counterattack-story-
 - `text_ui_quest.xml`
 - `text_ui_items.xml`
 - `text_ui_soul.xml`
+- `Libs/Tables/item/InventoryPreset__player.xml`
+- `Libs/Tables/item/clothing_preset__joseon_counterattack_early.xml`
+- `Libs/Tables/item/weapon_preset__joseon_counterattack_early.xml`
 - `Libs/Tables/rpg/rpg_param__joseon_counterattack_early.xml`
+
+## 심화 적용 내용
+
+- 코덱스: `ui_codex_*` 행을 임진왜란 초반, 부산진/동래성, 이순신 생존 원칙, 장계/봉수, 의병/관군 재편 중심으로 재작성
+- 아이템: 검, 활, 방패, 문서, 식량, 제작법을 `동래 장검`, `봉수대 활`, `성문 수비 방패`, `방습 화약 처방` 같은 조선 초기전 이름과 설명으로 재분류
+- 캐릭터/특성: 주요 인물과 특성을 `수비장 박의준`, `전령 한결`, `남해의 약속`, `반격의 불씨` 같은 세계관 용어로 치환
+- 시작 장비: 플레이어 인벤토리에 전령/수비병용 복식, 무장, 화살, 붕대, 물통, 비상 식량, 제작법을 넣음
 
 ## 조선의 반격 이미지 브리지
 
@@ -89,6 +99,7 @@ flowchart TD
   A["patches/localization_overrides.json"] --> B["build_and_install.ps1"]
   C["patches/long_campaign_overrides.json"] --> B
   D["patches/gameplay_overrides.json"] --> B
+  I["tools/kcd2_deep_content_patch.py"] --> B
   B --> E["KCD2 Mods 폴더"]
   F["setup_editor_workspace.ps1"] --> G["KCD2Mod 에디터 워크스페이스"]
   G --> H["WARHORSE Sandbox Editor"]

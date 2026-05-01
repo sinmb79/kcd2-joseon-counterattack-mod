@@ -12,9 +12,11 @@
   "imjinwar_install_path": "C:\\Program Files (x86)\\Joycity\\ImjinWar",
   "private_asset_extract_path": "assets\\game-captures-private\\imjinwar_extract",
   "private_kcd2_ui_pak": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\KingdomComeDeliverance2\\Mods\\joseon_counterattack_early\\Data\\joseon_counterattack_private_ui.pak",
+  "deep_content_patcher": "tools\\kcd2_deep_content_patch.py",
+  "deep_content_scope": "codex_ui_rows,item_ui_rows,character_soul_rows,player_inventory,player_clothing_preset,player_weapon_preset",
   "mod_id": "joseon_counterattack_early",
   "reference_direction": "임진왜란 초반 조선 지상 방어전. 이순신 장군은 생존하며 해상 전략망은 배경 축으로 유지한다.",
   "public_output_rule": "상용 게임 원본 PAK, 타 게임 이미지/캐릭터 파일, 개인 캡처, 사유 음성/이미지 자산은 공개 저장소에 올리지 않는다.",
   "primary_voice_if_adapted": "local-private-shared-voice",
-  "status": "local_kcd2_mod_installed_with_editor_workspace_and_private_imjinwar_asset_bridge"
+  "status": "local_kcd2_mod_installed_with_deep_content_editor_workspace_and_private_imjinwar_asset_bridge"
 }

@@ -15,6 +15,7 @@ $PatchPath = Join-Path $ProjectRoot "patches\localization_overrides.json"
 $GameplayPatchPath = Join-Path $ProjectRoot "patches\gameplay_overrides.json"
 $LongPatchPath = Join-Path $ProjectRoot "patches\long_campaign_overrides.json"
 $TemplateManifest = Join-Path $ProjectRoot "templates\mod.manifest"
+$DeepContentPatchScript = Join-Path $RepoRoot "tools\kcd2_deep_content_patch.py"
 $Patch = Get-Content -Raw -Encoding UTF8 -LiteralPath $PatchPath | ConvertFrom-Json
 $GameplayPatch = Get-Content -Raw -Encoding UTF8 -LiteralPath $GameplayPatchPath | ConvertFrom-Json
 $LongPatch = Get-Content -Raw -Encoding UTF8 -LiteralPath $LongPatchPath | ConvertFrom-Json
@@ -378,6 +379,23 @@ try {
 $dataPakOut = Join-Path $BuildData "$ModId.pak"
 New-PakFromDirectory -SourceDirectory $BuildData -PakFile $dataPakOut
 Remove-Item -LiteralPath (Join-Path $BuildData "Libs") -Recurse -Force
+
+if (Test-Path -LiteralPath $DeepContentPatchScript -PathType Leaf) {
+  $deepPatchJson = python $DeepContentPatchScript `
+    --game-root $GameRoot `
+    --build-root $BuildRoot `
+    --mod-id $ModId
+  $deepPatchReport = $deepPatchJson | ConvertFrom-Json
+  foreach ($deepFile in @($deepPatchReport.reports)) {
+    $report.files += [ordered]@{
+      kind = [string]$deepFile.kind
+      pak = [string]$deepFile.pak
+      entry = [string]$deepFile.entry
+      rowsChanged = if ($null -ne $deepFile.rowsChanged) { [int]$deepFile.rowsChanged } else { 0 }
+      bytes = if ($null -ne $deepFile.bytes) { [int]$deepFile.bytes } else { 0 }
+    }
+  }
+}
 
 $report.files += [ordered]@{
   kind = "gameplay"
