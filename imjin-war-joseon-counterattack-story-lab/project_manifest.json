@@ -1,14 +1,17 @@
 {
   "project": "imjin-war-joseon-counterattack-story-lab",
   "created_at": "2026-05-01",
+  "updated_at": "2026-05-02",
   "language": "ko",
   "current_target": "Kingdom Come: Deliverance II installed-folder fan mod",
   "working_title": "조선의 반격: 동래성의 새벽",
   "kcd2_install_path": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\KingdomComeDeliverance2",
+  "kcd2_mod_tools_path": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\KCD2Mod",
+  "kcd2_editor_path": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\KCD2Mod\\Bin\\Win64ReleaseSteamLTO_DLL\\Editor.exe",
   "kcd2_mod_path": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\KingdomComeDeliverance2\\Mods\\joseon_counterattack_early",
   "mod_id": "joseon_counterattack_early",
-  "reference_direction": "Imjin War early Joseon land-defense mood; Yi Sun-sin remains alive",
-  "public_output_rule": "do not publish repacked commercial game assets, personal voice paths, or private local captures; publish scripts, docs, and original planning only",
+  "reference_direction": "임진왜란 초반 조선 지상 방어전. 이순신 장군은 생존하며 해상 전략망은 배경 축으로 유지한다.",
+  "public_output_rule": "상용 게임 원본 PAK, 타 게임 이미지/캐릭터 파일, 개인 캡처, 사유 음성/이미지 자산은 공개 저장소에 올리지 않는다.",
   "primary_voice_if_adapted": "local-private-shared-voice",
-  "status": "installed_local_kcd2_longform_playable_text_conversion_with_gameplay_patch"
+  "status": "local_kcd2_mod_installed_and_verified_with_official_editor_workspace_ready"
 }

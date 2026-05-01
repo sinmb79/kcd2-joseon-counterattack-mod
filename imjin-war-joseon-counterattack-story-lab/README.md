@@ -1,74 +1,71 @@
 # 조선의 반격 KCD2 팬픽 모드 작업실
 
-보스의 요청에 맞춰 이 프로젝트는 별도 웹 팬게임이 아니라, 실제 설치된 `Kingdom Come: Deliverance II`에 적용할 수 있는 팬픽 모드 작업실로 전환했습니다.
+[English README](kcd2_mod/README.en.md)
 
-현재 모드는 KCD2 원본 파일을 덮어쓰지 않고, 공식 수동 모드 구조에 맞춰 다음 위치에 설치됩니다.
+보스가 요청하신 `Kingdom Come: Deliverance II` 팬픽 모드 작업 공간입니다. 목표는 KCD2의 지상전 플레이 구조 위에 임진왜란 초반, 부산진과 동래성 방어, 의병과 관군의 재편, 그리고 살아 있는 이순신 장군의 해상 전략망을 배경으로 한 조선 반격 서사를 입히는 것입니다.
+
+현재 단계는 “실제 게임에서 읽히는 로컬 모드”와 “공식 에디터 작업 환경”을 모두 갖춘 상태입니다. 원본 게임 파일은 직접 수정하지 않고, KCD2의 `Mods` 폴더에 별도 모드 패키지를 설치하는 방식입니다.
+
+## 바로 실행
+
+KCD2는 Steam에서 그대로 실행하시면 됩니다. 모드는 다음 위치에 설치되어 있습니다.
 
 ```text
 C:\Program Files (x86)\Steam\steamapps\common\KingdomComeDeliverance2\Mods\joseon_counterattack_early
 ```
 
-영문 설명이 필요한 사람은 [English README](kcd2_mod/README.en.md)를 클릭하면 됩니다.
-
-## 지금 반영된 것
-
-- KCD2 실제 설치 폴더에 `joseon_counterattack_early` 모드 설치
-- `Korean_xml.pak`, `English_xml.pak` 로컬 생성 및 배치
-- `Data\joseon_counterattack_early.pak` 생성 및 배치
-- 메인 UI와 전투 튜토리얼 일부를 `조선의 반격: 동래성의 새벽` 톤으로 변경
-- 장편 캠페인 텍스트팩 적용: 퀘스트 8,892행, 아이템/제조법 5,267행, 능력/상태 3,468행 치환
-- 휴대량, 공격 기력 소모, 활 조작, 전장 이동, 수리비, 전투 성장 수치 조정
-- 전쟁 초기, 부산진/동래성 압박, 지상전 중심, 이순신 생존 원칙 반영
-- 원본 `Data`와 `Localization` 폴더는 수정하지 않음
-
-## 바로 실행
-
-KCD2는 스팀에서 실행합니다.
-
-```text
-play_kcd2_joseon_mod.bat
-```
-
-또는 스팀 라이브러리에서 `Kingdom Come: Deliverance II`를 직접 실행해도 됩니다.
-
-## 모드 재생성
-
-관리자 권한 PowerShell에서:
+프로젝트 폴더에서 재빌드하거나 검증하려면:
 
 ```powershell
+cd "C:\Users\sinmb\Documents\New project 2\imjin-war-joseon-counterattack-story-lab"
 .\kcd2_mod\scripts\build_and_install.ps1
 .\kcd2_mod\scripts\verify_install.ps1
 ```
 
-검증 성공 시 `status: ok`가 나오고, 설치 위치의 pak 안에서 조선 초기전 문구가 발견됩니다.
+공식 에디터를 열려면:
 
-현재 검증 대상:
+```powershell
+.\kcd2_mod\scripts\launch_editor.ps1
+```
 
-- `Localization\Korean_xml.pak`
-- `Localization\English_xml.pak`
-- `Data\joseon_counterattack_early.pak`
-- `text_ui_quest.xml`, `text_ui_items.xml`, `text_ui_soul.xml` 전면 치환 여부
-- `Libs/Tables/rpg/rpg_param__joseon_counterattack_early.xml`
+## 현재 반영된 내용
+
+- 한국어/영어 로컬라이징 PAK 생성 및 설치
+- 퀘스트, 아이템, 제작법, 버프, 상태 텍스트를 24장 장편 캠페인 톤으로 치환
+- 지상전 중심 플레이를 위해 공격 스태미나, 휴대 중량, 활 조작, 수리비, 전투 성장 수치 패치
+- 이순신 장군 생존 원칙 반영
+- 전쟁 초반, 부산진과 동래성, 보급선, 봉수, 관군/의병 재편에 초점
+- KCD2 공식 Modding Tools 설치 및 에디터 워크스페이스 복구
+- 관리자 설치 없이 쓸 수 있는 포터블 7-Zip 콘솔 도구 준비
 
 ## 구조
 
-```mermaid
-flowchart TD
-  A["KCD2 원본 설치본"] --> B["build_and_install.ps1"]
-  C["localization_overrides.json"] --> B
-  D["초기 시나리오 설계"] --> C
-  B --> E["KCD2 Mods 폴더"]
-  E --> F["게임 실행 시 팬픽 UI 반영"]
+```text
+imjin-war-joseon-counterattack-story-lab/
+  docs/                         기획서, 에디터 환경 문서
+  kcd2_mod/
+    patches/                    로컬라이징과 게임플레이 패치 데이터
+    scenario/                   초기 캠페인 설계
+    scripts/                    빌드, 설치, 검증, 에디터 실행 스크립트
+    templates/                  KCD2 mod.manifest 템플릿
 ```
 
-## 캐릭터와 이미지 교체에 대한 현재 판단
+```mermaid
+flowchart LR
+  A["KCD2 원본 설치"] --> B["build_and_install.ps1"]
+  C["조선 반격 패치 데이터"] --> B
+  B --> D["Mods/joseon_counterattack_early"]
+  D --> E["KCD2 실행"]
+  A --> F["setup_editor_workspace.ps1"]
+  F --> G["WARHORSE Sandbox Editor"]
+```
 
-보스가 말한 “조선의 반격의 캐릭터/이미지 데이터 활용”은 방향성은 맞지만, 다른 상용 게임의 이미지와 캐릭터 파일을 그대로 KCD2에 복사해 배포 가능한 형태로 만드는 것은 권리 문제가 큽니다. 그래서 이번 1차 버전은 안전하게 KCD2가 읽는 모드 폴더와 문구/세계관 반영부터 실제 적용했습니다.
+## 권리와 보안 경계
 
-다음 단계에서 캐릭터 모델, 복식, 무기, UI 이미지까지 바꾸려면 KCD2 공식 Modding Tools와 직접 제작 또는 권리 확인된 자산을 사용해 CryEngine 자산 파이프라인으로 넘기는 방식이 맞습니다.
+이 저장소에는 KCD2 원본 PAK, 다른 상용 게임의 이미지/캐릭터 파일, 보스의 개인 캡처나 사유 자산을 올리지 않습니다. 공개 가능한 것은 스크립트, 문서, 패치 규칙, 직접 작성한 설정 파일입니다. 실제 상용 게임 자산은 보스 PC의 로컬 설치본에서만 참조합니다.
 
-## 현재 완료 판정
+## 문서
 
-보스가 바로 실행해서 KCD2 안에서 확인할 수 있는 필수 모드 개발은 완료했습니다. 남은 것은 “추가 확장”에 해당합니다. 현재 패키지는 원본 게임을 망가뜨리지 않는 선에서 실제 KCD2 모드 로더가 읽을 수 있는 현지화 pak과 gameplay pak을 모두 갖춘 상태입니다.
-
-장편 서사는 [long_campaign_outline.md](docs/long_campaign_outline.md)에 정리했습니다.
+- [에디터 작업 환경](docs/editor_toolchain_setup.md)
+- [장편 캠페인 개요](docs/long_campaign_outline.md)
+- [KCD2 모드 설명](kcd2_mod/README.ko.md)

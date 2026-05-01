@@ -1,30 +1,59 @@
-# KCD2 Joseon Counterattack Early Front Mod
+# KCD2 Joseon Counterattack Early-War Mod
 
-This folder prepares a non-destructive fan mod for the locally installed `Kingdom Come: Deliverance II` game.
+[한국어](README.ko.md)
 
-The current build does not redistribute or copy assets from another commercial game. Instead, it generates a local KCD2 mod from the user's own installed files and applies an early Imjin War Joseon land-defense tone through localization overrides.
+This folder builds a local fan mod for the installed copy of `Kingdom Come: Deliverance II`. It does not overwrite original game files. It installs a separate KCD2 manual mod under `Mods/<modid>`.
 
-## Design Rules
+## Direction
 
-- Start in the opening phase of the Imjin War, around the Busanjin and Dongnae pressure.
-- Keep Admiral Yi Sun-sin alive.
-- Treat the navy as a living strategic background force, while gameplay tone stays land-combat focused.
-- Install through KCD2's manual mod structure: `Mods/<modid>/mod.manifest` plus packed `.pak` files.
-- Rewrite visible quest, item, recipe, trait, and state text into a 24-chapter long-form campaign.
-- Add a gameplay-table pass for carrying capacity, attack stamina cost, bow handling, repair cost, and combat growth.
-- Do not publish repacked KCD2 localization or third-party game assets.
+- Opening period: early Imjin War, 1592
+- Focus: Busanjin, Dongnae, inland defense, supply lines, beacons, militia and official army reorganization
+- Gameplay tone: land combat, scouting, courier work, night movement, defense and counterattack
+- Story rule: Admiral Yi Sun-sin stays alive; the navy remains a strategic background force
+- Distribution rule: do not publish repacked commercial game assets
 
-## Run
+## Installed Path
 
-Open PowerShell as administrator and run:
+```text
+C:\Program Files (x86)\Steam\steamapps\common\KingdomComeDeliverance2\Mods\joseon_counterattack_early
+```
+
+## Build And Verify
 
 ```powershell
+cd "C:\Users\sinmb\Documents\New project 2\imjin-war-joseon-counterattack-story-lab"
 .\kcd2_mod\scripts\build_and_install.ps1
 .\kcd2_mod\scripts\verify_install.ps1
 ```
 
-Default game path:
+## Official Editor
+
+The official KCD2 modding tools are installed here:
 
 ```text
-C:\Program Files (x86)\Steam\steamapps\common\KingdomComeDeliverance2
+C:\Program Files (x86)\Steam\steamapps\common\KCD2Mod
+```
+
+Launch the editor:
+
+```powershell
+.\kcd2_mod\scripts\launch_editor.ps1
+```
+
+If the editor shows `Database system error`, rebuild the workspace links:
+
+```powershell
+.\kcd2_mod\scripts\setup_editor_workspace.ps1
+```
+
+## Structure
+
+```mermaid
+flowchart TD
+  A["Localization patches"] --> B["build_and_install.ps1"]
+  C["Long campaign rewrite"] --> B
+  D["Gameplay table patch"] --> B
+  B --> E["KCD2 Mods folder"]
+  F["setup_editor_workspace.ps1"] --> G["KCD2Mod editor workspace"]
+  G --> H["WARHORSE Sandbox Editor"]
 ```
