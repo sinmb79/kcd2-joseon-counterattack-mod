@@ -17,7 +17,7 @@ C:\Program Files (x86)\Steam\steamapps\common\KingdomComeDeliverance2\Mods\joseo
 .\kcd2_mod\scripts\verify_visual_asset_pack.ps1
 ```
 
-`build_private_imjinwar_bridge.ps1` extracts Unity assets and then automatically calls `build_visual_asset_pack.ps1`. If extraction is already done, rebuild only the visual pack:
+`build_private_imjinwar_bridge.ps1` extracts Unity assets and then automatically calls `build_visual_asset_pack.ps1 -Profile safe`. If extraction is already done, rebuild only the safe visual pack:
 
 ```powershell
 .\kcd2_mod\scripts\build_visual_asset_pack.ps1
@@ -25,11 +25,10 @@ C:\Program Files (x86)\Steam\steamapps\common\KingdomComeDeliverance2\Mods\joseo
 
 ## Coverage
 
-- 44 UI/book/map/item DDS entries
-- 10 city-material diffuse DDS entries
-- Joseon gate, beacon-fire, fortress wall, market/alley, and campaign-map backgrounds
+- 20 safe-profile DDS entries
 - Icons for hwando sword, beacon bow, gate shield, sealed dispatch, ration, powder, uniform, and field medicine
-- Hanok plaster, stone wall, wooden gate, beams, and hanji window material overrides
+- Campaign maps and document images inspired by the Busanjin/Dongnae land front
+- No broad UI, book-decoration, or city-material override entries in the default profile
 
 ```mermaid
 flowchart TD
@@ -43,10 +42,19 @@ flowchart TD
 
 ## Verification
 
-`verify_visual_asset_pack.ps1` checks that the private PAK exists, contains at least 54 entries, and includes the required UI, codex, map, item, and city-material override paths.
+`verify_visual_asset_pack.ps1` checks that the private PAK exists, contains at least 20 entries, includes the required map/item/document paths, and does not include broad UI or city-material override paths in the safe profile.
 
 Generated previews and manifests stay in a Git-ignored local folder:
 
 ```text
 assets\game-captures-private\kcd2_visual_pack\
+```
+
+## Experimental Full Profile
+
+The `full` profile creates 54 DDS entries and includes city-material overrides. It can make the live game look broken, so it is no longer the default.
+
+```powershell
+.\kcd2_mod\scripts\build_visual_asset_pack.ps1 -Profile full
+.\kcd2_mod\scripts\verify_visual_asset_pack.ps1 -Profile full
 ```

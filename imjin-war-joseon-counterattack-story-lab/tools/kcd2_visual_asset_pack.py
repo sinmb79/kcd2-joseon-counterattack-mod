@@ -96,6 +96,36 @@ CITY_TEXTURE_SPECS: tuple[AssetSpec, ...] = (
 
 ASSET_SPECS: tuple[AssetSpec, ...] = UI_SPECS + CITY_TEXTURE_SPECS
 TRANSPARENT_GENERATORS = {"ornament", "shield_strip", "buff_disks", "seal"}
+SAFE_TARGETS = {
+    "Libs/UI/Textures/Apse/buff_disks.dds",
+    "Libs/UI/Textures/Books/Maps/treasureHunter_map1_1_ui.dds",
+    "Libs/UI/Textures/Books/Maps/treasureHunter_map1_2_ui.dds",
+    "Libs/UI/Textures/Books/Maps/treasureHunter_map2_1_ui.dds",
+    "Libs/UI/Textures/Books/Maps/treasureHunter_map2_2_ui.dds",
+    "Libs/UI/Textures/Books/Products/replaceme_ui.dds",
+    "Libs/UI/Textures/Books/Products/1_ui.dds",
+    "Libs/UI/Textures/Books/Products/2_ui.dds",
+    "Libs/UI/Textures/Books/Products/3_ui.dds",
+    "Libs/UI/Textures/Books/Products/4_ui.dds",
+    "Libs/UI/Textures/Books/Products/5_ui.dds",
+    "Libs/UI/Textures/Books/Products/6_ui.dds",
+    "Libs/UI/Textures/Books/Recipes/replaceme_ui.dds",
+    "Libs/UI/Textures/Books/Ingredients/saltpeter_ui.dds",
+    "Libs/UI/Textures/Books/Ingredients/special_charcoal_ui.dds",
+    "Libs/UI/Textures/Books/Ingredients/special_attire_ui.dds",
+    "Libs/UI/Textures/Books/Ingredients/honey_ui.dds",
+    "Libs/UI/Textures/Books/Unique/roses_book_01_ui.dds",
+    "Libs/UI/Textures/Books/Unique/roses_book_02_ui.dds",
+    "Libs/UI/Textures/Books/Unique/sigismund_seal_ui.dds",
+}
+
+
+def specs_for_profile(profile: str) -> tuple[AssetSpec, ...]:
+    if profile == "full":
+        return ASSET_SPECS
+    if profile == "safe":
+        return tuple(spec for spec in UI_SPECS if spec.target in SAFE_TARGETS)
+    raise SystemExit(f"Unsupported visual profile: {profile}")
 
 
 def clamp(value: float) -> int:
@@ -667,7 +697,7 @@ def package_stage(stage_root: Path, pak_path: Path) -> int:
     return count
 
 
-def build_visual_pack(private_root: Path, kcd2_mod_root: Path, output_root: Path) -> dict:
+def build_visual_pack(private_root: Path, kcd2_mod_root: Path, output_root: Path, profile: str) -> dict:
     texture_root = private_root / "textures"
     if not texture_root.exists():
         raise SystemExit(f"Extracted ImjinWar texture folder was not found: {texture_root}")
@@ -682,8 +712,9 @@ def build_visual_pack(private_root: Path, kcd2_mod_root: Path, output_root: Path
     preview_root.mkdir(parents=True, exist_ok=True)
 
     sources = load_sources(texture_root)
+    selected_specs = specs_for_profile(profile)
     entries: list[dict] = []
-    for spec in ASSET_SPECS:
+    for spec in selected_specs:
         image = generate_image(spec, sources)
         if spec.target.startswith("Textures/structures/") or spec.generator not in TRANSPARENT_GENERATORS:
             image = force_opaque(image)
@@ -710,9 +741,10 @@ def build_visual_pack(private_root: Path, kcd2_mod_root: Path, output_root: Path
         "output_root": str(output_root),
         "pak_path": str(pak_path),
         "entry_count": package_count,
+        "profile": profile,
         "source_texture_count": len(sources),
-        "ui_entry_count": len(UI_SPECS),
-        "city_texture_entry_count": len(CITY_TEXTURE_SPECS),
+        "ui_entry_count": len([spec for spec in selected_specs if not spec.target.startswith("Textures/structures/")]),
+        "city_texture_entry_count": len([spec for spec in selected_specs if spec.target.startswith("Textures/structures/")]),
         "entries": entries,
         "note": "Local-only visual pack. It contains generated assets plus local ImjinWar-derived composites and must not be redistributed.",
     }
@@ -725,9 +757,10 @@ def main() -> int:
     parser.add_argument("--private-root", required=True)
     parser.add_argument("--kcd2-mod-root", required=True)
     parser.add_argument("--output", required=True)
+    parser.add_argument("--profile", choices=("safe", "full"), default="safe")
     args = parser.parse_args()
 
-    result = build_visual_pack(Path(args.private_root), Path(args.kcd2_mod_root), Path(args.output))
+    result = build_visual_pack(Path(args.private_root), Path(args.kcd2_mod_root), Path(args.output), args.profile)
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0
 

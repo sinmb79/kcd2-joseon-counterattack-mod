@@ -146,11 +146,11 @@ Deep Silver의 KCD2 모딩 안내는 수동 설치 시 게임 루트의 `mods/` 
 
 추가로 `tools/kcd2_visual_asset_pack.py`와 `kcd2_mod/scripts/build_visual_asset_pack.ps1`를 만들어, 보스 PC의 `임진왜란 조선의 반격` 추출 텍스처를 참고하면서 직접 생성한 조선풍 DDS를 private PAK에 넣었습니다.
 
-검증된 현재 구성:
+핫픽스 후 검증된 현재 구성:
 
-- private PAK 엔트리 54개
-- UI/책/지도/아이템 DDS 44개
-- 회벽, 석벽, 목재 대문, 들보, 한지창 등 도시 구조물 diffuse DDS 10개
+- 기본 안전 private PAK 엔트리 20개
+- 지도, 아이템, 재료, 제작법, 문서 이미지 DDS만 유지
+- 전역 UI와 도시 구조물 diffuse 덮기는 화면 품질 문제가 있어 기본 적용에서 제외
 - 검증 스크립트: `.\kcd2_mod\scripts\verify_visual_asset_pack.ps1`
 
 ## 완료 판정

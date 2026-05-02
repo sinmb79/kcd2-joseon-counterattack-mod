@@ -12,7 +12,6 @@ $PakPath = Join-Path (Join-Path $ModRoot "Data") "joseon_counterattack_private_u
 $RequiredEntries = @(
   "Libs/UI/Textures/Books/Unique/roses_book_01_ui.dds",
   "Libs/UI/Textures/Books/Maps/treasureHunter_map1_1_ui.dds",
-  "Libs/UI/Textures/Apse/modal_dialog_simple.dds",
   "Libs/UI/Textures/Books/Products/replaceme_ui.dds",
   "Libs/UI/Textures/Books/Recipes/replaceme_ui.dds",
   "Libs/UI/Textures/Apse/buff_disks.dds"

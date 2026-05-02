@@ -60,7 +60,7 @@ C:\Program Files (x86)\Steam\steamapps\common\KingdomComeDeliverance2\Mods\joseo
 
 These files are for local play only and are not committed to the public repository.
 
-The expanded visual pack writes Joseon-style item icons, codex backgrounds, campaign maps, city/fortress scenes, and hanok plaster, stone, wood, beam, and hanji-window material overrides into the same private PAK. The current verified pack contains 54 DDS entries.
+The expanded visual pack now defaults to a safe profile. It writes 20 Joseon-style item, map, recipe, and document DDS entries into the same private PAK, while avoiding broad UI and city-material overrides. The older 54-entry full profile remains experimental only.
 
 ## Official Editor
 

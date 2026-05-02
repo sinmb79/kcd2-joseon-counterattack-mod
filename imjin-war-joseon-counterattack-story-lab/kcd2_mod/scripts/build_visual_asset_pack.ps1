@@ -1,6 +1,8 @@
 param(
   [string]$GameRoot = "C:\Program Files (x86)\Steam\steamapps\common\KingdomComeDeliverance2",
-  [string]$PythonPackageRoot = "C:\Users\sinmb\workspace\tools\python-packages\unitypy"
+  [string]$PythonPackageRoot = "C:\Users\sinmb\workspace\tools\python-packages\unitypy",
+  [ValidateSet("safe", "full")]
+  [string]$Profile = "safe"
 )
 
 $ErrorActionPreference = "Stop"
@@ -35,7 +37,8 @@ $env:PYTHONPATH = $PythonPackageRoot
 python $VisualScript `
   --private-root $PrivateRoot `
   --kcd2-mod-root $ModRoot `
-  --output $VisualOutput
+  --output $VisualOutput `
+  --profile $Profile
 
 $pakPath = Join-Path (Join-Path $ModRoot "Data") "joseon_counterattack_private_ui.pak"
 if (!(Test-Path -LiteralPath $pakPath -PathType Leaf)) {
@@ -47,5 +50,6 @@ if (!(Test-Path -LiteralPath $pakPath -PathType Leaf)) {
   privateRoot = $PrivateRoot
   visualOutput = $VisualOutput
   privatePak = $pakPath
+  profile = $Profile
   note = "Generated visual assets are local-only and ignored by git."
 } | ConvertTo-Json -Depth 4

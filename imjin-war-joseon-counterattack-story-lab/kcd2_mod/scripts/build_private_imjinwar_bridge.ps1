@@ -1,7 +1,9 @@
 param(
   [string]$ImjinWarRoot = "C:\Program Files (x86)\Joycity\ImjinWar",
   [string]$GameRoot = "C:\Program Files (x86)\Steam\steamapps\common\KingdomComeDeliverance2",
-  [string]$PythonPackageRoot = "C:\Users\sinmb\workspace\tools\python-packages\unitypy"
+  [string]$PythonPackageRoot = "C:\Users\sinmb\workspace\tools\python-packages\unitypy",
+  [ValidateSet("safe", "full")]
+  [string]$VisualProfile = "safe"
 )
 
 $ErrorActionPreference = "Stop"
@@ -40,7 +42,7 @@ python $BridgeScript `
   --build-ui-pak
 
 if (Test-Path -LiteralPath $VisualPackScript -PathType Leaf) {
-  & $VisualPackScript -GameRoot $GameRoot -PythonPackageRoot $PythonPackageRoot | Out-Null
+  & $VisualPackScript -GameRoot $GameRoot -PythonPackageRoot $PythonPackageRoot -Profile $VisualProfile | Out-Null
 }
 
 $pakPath = Join-Path (Join-Path $ModRoot "Data") "joseon_counterattack_private_ui.pak"
@@ -63,5 +65,6 @@ try {
   privateOutput = $PrivateOutput
   privatePak = $pakPath
   privatePakEntries = $entryCount
+  visualProfile = $VisualProfile
   note = "Private extracted assets are local-only and ignored by git."
 } | ConvertTo-Json -Depth 4

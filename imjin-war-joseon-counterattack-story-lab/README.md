@@ -40,7 +40,7 @@ cd "C:\Users\sinmb\Documents\New project 2\imjin-war-joseon-counterattack-story-
 - KCD2 공식 Modding Tools 설치 및 에디터 워크스페이스 복구
 - 관리자 설치 없이 쓸 수 있는 포터블 7-Zip 콘솔 도구 준비
 - 보스 PC에 설치된 `임진왜란 조선의 반격` Unity 자산을 로컬 전용으로 추출해 KCD2 UI 일부에 연결하는 private PAK 생성
-- 직접 제작한 조선풍 아이템 아이콘, 코덱스/지도/도시 배경, 한옥 담장/목재/한지창 재질을 KCD2가 읽는 DDS 경로 54개에 적용
+- 직접 제작한 조선풍 아이템 아이콘, 지도, 문서 이미지를 KCD2가 읽는 안전 DDS 경로 20개에 적용
 
 ## 구조
 
