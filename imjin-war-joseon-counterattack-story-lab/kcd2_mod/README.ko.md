@@ -61,6 +61,7 @@ C:\Program Files (x86)\Joycity\ImjinWar
 ```powershell
 .\kcd2_mod\scripts\build_private_imjinwar_bridge.ps1
 .\kcd2_mod\scripts\verify_private_imjinwar_bridge.ps1
+.\kcd2_mod\scripts\verify_visual_asset_pack.ps1
 ```
 
 생성 위치:
@@ -71,6 +72,8 @@ C:\Program Files (x86)\Steam\steamapps\common\KingdomComeDeliverance2\Mods\joseo
 ```
 
 이 파일들은 보스 PC에서 실제 플레이할 때만 쓰이며, 공개 저장소에는 올라가지 않습니다.
+
+확장 비주얼 팩은 같은 private PAK 안에 조선풍 아이콘, 코덱스 배경, 지도, 성문/봉수/시장 배경, 그리고 한옥 회벽·석축·목재·한지창 도시 재질을 함께 넣습니다. 현재 검증 기준은 54개 DDS 엔트리입니다.
 
 ## 공식 에디터
 
@@ -101,6 +104,7 @@ flowchart TD
   D["patches/gameplay_overrides.json"] --> B
   I["tools/kcd2_deep_content_patch.py"] --> B
   B --> E["KCD2 Mods 폴더"]
+  J["build_visual_asset_pack.ps1"] --> E
   F["setup_editor_workspace.ps1"] --> G["KCD2Mod 에디터 워크스페이스"]
   G --> H["WARHORSE Sandbox Editor"]
 ```

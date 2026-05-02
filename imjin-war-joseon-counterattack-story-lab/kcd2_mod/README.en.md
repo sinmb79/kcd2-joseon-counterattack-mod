@@ -48,6 +48,7 @@ The private bridge extracts selected Unity Texture2D/TextAsset data into a git-i
 ```powershell
 .\kcd2_mod\scripts\build_private_imjinwar_bridge.ps1
 .\kcd2_mod\scripts\verify_private_imjinwar_bridge.ps1
+.\kcd2_mod\scripts\verify_visual_asset_pack.ps1
 ```
 
 Generated local outputs:
@@ -58,6 +59,8 @@ C:\Program Files (x86)\Steam\steamapps\common\KingdomComeDeliverance2\Mods\joseo
 ```
 
 These files are for local play only and are not committed to the public repository.
+
+The expanded visual pack writes Joseon-style item icons, codex backgrounds, campaign maps, city/fortress scenes, and hanok plaster, stone, wood, beam, and hanji-window material overrides into the same private PAK. The current verified pack contains 54 DDS entries.
 
 ## Official Editor
 
@@ -91,5 +94,6 @@ flowchart TD
   F["setup_editor_workspace.ps1"] --> G["KCD2Mod editor workspace"]
   G --> H["WARHORSE Sandbox Editor"]
   I["Installed ImjinWar client"] --> J["build_private_imjinwar_bridge.ps1"]
-  J --> E
+  J --> L["build_visual_asset_pack.ps1"]
+  L --> E
 ```

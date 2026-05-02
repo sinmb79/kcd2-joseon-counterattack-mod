@@ -28,6 +28,7 @@ C:\Program Files (x86)\Joycity\ImjinWar
 ```powershell
 .\kcd2_mod\scripts\build_private_imjinwar_bridge.ps1
 .\kcd2_mod\scripts\verify_private_imjinwar_bridge.ps1
+.\kcd2_mod\scripts\verify_visual_asset_pack.ps1
 ```
 
 이 스크립트는 다음을 만듭니다.
@@ -45,8 +46,13 @@ C:\Program Files (x86)\Steam\steamapps\common\KingdomComeDeliverance2\Mods\joseo
 flowchart LR
   A["ImjinWar Unity assets"] --> B["UnityPy 추출"]
   B --> C["PNG/DDS 로컬 사유 폴더"]
-  C --> D["joseon_counterattack_private_ui.pak"]
+  C --> V["조선풍 비주얼 팩 생성"]
+  V --> D["joseon_counterattack_private_ui.pak"]
   D --> E["KCD2 Mods/joseon_counterattack_early"]
 ```
 
-현재 브리지는 KCD2가 이미 읽는 UI DDS 경로에 로컬 DDS를 넣는 방식입니다. 그래서 퀘스트/책/아이템/버프 UI 일부에서 조선의 반격 분위기의 이미지가 우선 적용될 수 있습니다. 캐릭터 모델과 복식 전체 교체는 Unity 모델을 CryEngine 자산으로 직접 변환해야 하므로 별도 장기 파이프라인으로 둡니다.
+현재 브리지는 KCD2가 이미 읽는 UI DDS 경로에 로컬 DDS를 넣는 방식입니다. 그래서 퀘스트/책/아이템/버프 UI 일부에서 조선의 반격 분위기의 이미지가 우선 적용될 수 있습니다.
+
+확장된 `build_visual_asset_pack.ps1` 단계는 추출 자산을 참고하면서 새 조선풍 아이콘, 코덱스 배경, 지도, 성문/봉수/시장 배경, 한옥 담장·목재·한지창 재질을 직접 생성합니다. 현재 private PAK에는 54개 DDS가 들어가며, 그중 10개는 KCD2 도시 구조물의 담장/석벽/목재/창문 diffuse 텍스처 경로를 덮어 조선풍 도시 체감을 강화합니다.
+
+캐릭터 모델과 복식 전체 교체는 Unity 모델을 CryEngine 자산으로 직접 변환해야 하므로 별도 장기 파이프라인으로 둡니다.

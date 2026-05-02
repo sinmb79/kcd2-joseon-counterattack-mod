@@ -40,6 +40,7 @@ cd "C:\Users\sinmb\Documents\New project 2\imjin-war-joseon-counterattack-story-
 - KCD2 공식 Modding Tools 설치 및 에디터 워크스페이스 복구
 - 관리자 설치 없이 쓸 수 있는 포터블 7-Zip 콘솔 도구 준비
 - 보스 PC에 설치된 `임진왜란 조선의 반격` Unity 자산을 로컬 전용으로 추출해 KCD2 UI 일부에 연결하는 private PAK 생성
+- 직접 제작한 조선풍 아이템 아이콘, 코덱스/지도/도시 배경, 한옥 담장/목재/한지창 재질을 KCD2가 읽는 DDS 경로 54개에 적용
 
 ## 구조
 
@@ -64,7 +65,8 @@ flowchart LR
   A --> F["setup_editor_workspace.ps1"]
   F --> G["WARHORSE Sandbox Editor"]
   H["Joycity ImjinWar 설치본"] --> I["build_private_imjinwar_bridge.ps1"]
-  I --> D
+  I --> K["build_visual_asset_pack.ps1"]
+  K --> D
 ```
 
 ## 권리와 보안 경계
@@ -76,4 +78,5 @@ flowchart LR
 - [에디터 작업 환경](docs/editor_toolchain_setup.md)
 - [장편 캠페인 개요](docs/long_campaign_outline.md)
 - [조선의 반격 로컬 자산 브리지](docs/imjinwar_asset_bridge.md)
+- [조선풍 비주얼 팩](docs/visual_asset_pack.md)
 - [KCD2 모드 설명](kcd2_mod/README.ko.md)

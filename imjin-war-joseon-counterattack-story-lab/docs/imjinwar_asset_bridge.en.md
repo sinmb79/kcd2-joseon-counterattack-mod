@@ -17,6 +17,7 @@ Commercial game assets are not committed to the public repository. The bridge ex
 ```powershell
 .\kcd2_mod\scripts\build_private_imjinwar_bridge.ps1
 .\kcd2_mod\scripts\verify_private_imjinwar_bridge.ps1
+.\kcd2_mod\scripts\verify_visual_asset_pack.ps1
 ```
 
 Generated local outputs:
@@ -27,3 +28,5 @@ C:\Program Files (x86)\Steam\steamapps\common\KingdomComeDeliverance2\Mods\joseo
 ```
 
 The private PAK maps selected Unity textures into existing KCD2 UI DDS paths so parts of the quest/book/item/buff UI can pick up a Joseon Counterattack visual tone locally.
+
+The expanded visual-pack stage also creates original Joseon-style item icons, codex art, maps, fortress/city backgrounds, and material overrides. The current local PAK contains 54 DDS entries: 44 UI/book/item entries and 10 city-material diffuse overrides for plaster, stone, wood, beams, and paper-window textures.
